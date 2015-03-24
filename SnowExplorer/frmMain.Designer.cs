@@ -91,6 +91,7 @@
             this.btnGetData.TabIndex = 1;
             this.btnGetData.Text = "Get Snow Data";
             this.btnGetData.UseVisualStyleBackColor = true;
+            this.btnGetData.Click += new System.EventHandler(this.btnGetData_Click);
             // 
             // btnDrawPolygon
             // 

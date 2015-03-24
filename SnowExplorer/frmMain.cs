@@ -16,5 +16,11 @@ namespace SnowExplorer
         {
             InitializeComponent();
         }
+
+        private void btnGetData_Click(object sender, EventArgs e)
+        {
+            frmGetData dataForm = new frmGetData();
+            dataForm.Show();
+        }
     }
 }
