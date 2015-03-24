@@ -33,55 +33,55 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotSpatial.Analysis">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Analysis.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Analysis.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Compatibility">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Compatibility.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Compatibility.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Controls">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Controls.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Controls.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Data">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Data.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Data.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Data.Forms">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Data.Forms.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Data.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Extensions">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Extensions.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Modeling.Forms">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Modeling.Forms.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Modeling.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Mono">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Mono.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Mono.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Positioning">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Positioning.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Positioning.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Positioning.Design">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Positioning.Design.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Positioning.Design.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Positioning.Forms">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Positioning.Forms.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Positioning.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Projections">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Projections.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Projections.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Projections.Forms">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Projections.Forms.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Projections.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Serialization">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Serialization.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Symbology">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Symbology.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Symbology.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Symbology.Forms">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Symbology.Forms.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Symbology.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Topology">
-      <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Topology.dll</HintPath>
+      <HintPath>D:\DotSpatial\DotSpatial.Topology.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -34,24 +34,27 @@
             this.btnDrawPolygon = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.grpUnits = new System.Windows.Forms.GroupBox();
-            this.radMetric = new System.Windows.Forms.RadioButton();
             this.radEnglish = new System.Windows.Forms.RadioButton();
+            this.radMetric = new System.Windows.Forms.RadioButton();
             this.cmbBackground = new System.Windows.Forms.ComboBox();
             this.lblBackground = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.pnlLegendandResults = new System.Windows.Forms.Panel();
+            this.grpLegend = new System.Windows.Forms.GroupBox();
+            this.chkBackground = new System.Windows.Forms.CheckBox();
+            this.chkRaster = new System.Windows.Forms.CheckBox();
+            this.chkPolygon = new System.Windows.Forms.CheckBox();
             this.grpResults = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.grpLegend = new System.Windows.Forms.GroupBox();
-            this.chkPolygon = new System.Windows.Forms.CheckBox();
-            this.chkRaster = new System.Windows.Forms.CheckBox();
-            this.chkBackground = new System.Windows.Forms.CheckBox();
             this.spcMain = new System.Windows.Forms.SplitContainer();
+            this.btnZoomIn = new System.Windows.Forms.Button();
+            this.btnZoomOut = new System.Windows.Forms.Button();
+            this.btnZoomExtents = new System.Windows.Forms.Button();
             this.grpUnits.SuspendLayout();
             this.pnlLegendandResults.SuspendLayout();
-            this.grpResults.SuspendLayout();
             this.grpLegend.SuspendLayout();
+            this.grpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
             this.spcMain.Panel1.SuspendLayout();
             this.spcMain.Panel2.SuspendLayout();
@@ -118,17 +121,6 @@
             this.grpUnits.TabStop = false;
             this.grpUnits.Text = "Units";
             // 
-            // radMetric
-            // 
-            this.radMetric.AutoSize = true;
-            this.radMetric.Location = new System.Drawing.Point(6, 19);
-            this.radMetric.Name = "radMetric";
-            this.radMetric.Size = new System.Drawing.Size(54, 17);
-            this.radMetric.TabIndex = 0;
-            this.radMetric.TabStop = true;
-            this.radMetric.Text = "Metric";
-            this.radMetric.UseVisualStyleBackColor = true;
-            // 
             // radEnglish
             // 
             this.radEnglish.AutoSize = true;
@@ -139,6 +131,17 @@
             this.radEnglish.TabStop = true;
             this.radEnglish.Text = "English";
             this.radEnglish.UseVisualStyleBackColor = true;
+            // 
+            // radMetric
+            // 
+            this.radMetric.AutoSize = true;
+            this.radMetric.Location = new System.Drawing.Point(6, 19);
+            this.radMetric.Name = "radMetric";
+            this.radMetric.Size = new System.Drawing.Size(54, 17);
+            this.radMetric.TabIndex = 0;
+            this.radMetric.TabStop = true;
+            this.radMetric.Text = "Metric";
+            this.radMetric.UseVisualStyleBackColor = true;
             // 
             // cmbBackground
             // 
@@ -185,6 +188,50 @@
             this.pnlLegendandResults.Size = new System.Drawing.Size(145, 269);
             this.pnlLegendandResults.TabIndex = 9;
             // 
+            // grpLegend
+            // 
+            this.grpLegend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpLegend.Controls.Add(this.chkBackground);
+            this.grpLegend.Controls.Add(this.chkRaster);
+            this.grpLegend.Controls.Add(this.chkPolygon);
+            this.grpLegend.Location = new System.Drawing.Point(15, 24);
+            this.grpLegend.Name = "grpLegend";
+            this.grpLegend.Size = new System.Drawing.Size(114, 120);
+            this.grpLegend.TabIndex = 1;
+            this.grpLegend.TabStop = false;
+            this.grpLegend.Text = "Legend";
+            // 
+            // chkBackground
+            // 
+            this.chkBackground.AutoSize = true;
+            this.chkBackground.Location = new System.Drawing.Point(6, 87);
+            this.chkBackground.Name = "chkBackground";
+            this.chkBackground.Size = new System.Drawing.Size(108, 17);
+            this.chkBackground.TabIndex = 2;
+            this.chkBackground.Text = "Background Map";
+            this.chkBackground.UseVisualStyleBackColor = true;
+            // 
+            // chkRaster
+            // 
+            this.chkRaster.AutoSize = true;
+            this.chkRaster.Location = new System.Drawing.Point(7, 52);
+            this.chkRaster.Name = "chkRaster";
+            this.chkRaster.Size = new System.Drawing.Size(87, 17);
+            this.chkRaster.TabIndex = 1;
+            this.chkRaster.Text = "Snow Raster";
+            this.chkRaster.UseVisualStyleBackColor = true;
+            // 
+            // chkPolygon
+            // 
+            this.chkPolygon.AutoSize = true;
+            this.chkPolygon.Location = new System.Drawing.Point(7, 19);
+            this.chkPolygon.Name = "chkPolygon";
+            this.chkPolygon.Size = new System.Drawing.Size(64, 17);
+            this.chkPolygon.TabIndex = 0;
+            this.chkPolygon.Text = "Polygon";
+            this.chkPolygon.UseVisualStyleBackColor = true;
+            // 
             // grpResults
             // 
             this.grpResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -193,7 +240,7 @@
             this.grpResults.Controls.Add(this.textBox1);
             this.grpResults.Location = new System.Drawing.Point(11, 150);
             this.grpResults.Name = "grpResults";
-            this.grpResults.Size = new System.Drawing.Size(121, 109);
+            this.grpResults.Size = new System.Drawing.Size(118, 96);
             this.grpResults.TabIndex = 0;
             this.grpResults.TabStop = false;
             this.grpResults.Text = "Results";
@@ -206,52 +253,8 @@
             this.textBox1.Location = new System.Drawing.Point(11, 21);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(98, 77);
+            this.textBox1.Size = new System.Drawing.Size(95, 64);
             this.textBox1.TabIndex = 0;
-            // 
-            // grpLegend
-            // 
-            this.grpLegend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpLegend.Controls.Add(this.chkBackground);
-            this.grpLegend.Controls.Add(this.chkRaster);
-            this.grpLegend.Controls.Add(this.chkPolygon);
-            this.grpLegend.Location = new System.Drawing.Point(15, 24);
-            this.grpLegend.Name = "grpLegend";
-            this.grpLegend.Size = new System.Drawing.Size(117, 120);
-            this.grpLegend.TabIndex = 1;
-            this.grpLegend.TabStop = false;
-            this.grpLegend.Text = "Legend";
-            // 
-            // chkPolygon
-            // 
-            this.chkPolygon.AutoSize = true;
-            this.chkPolygon.Location = new System.Drawing.Point(7, 19);
-            this.chkPolygon.Name = "chkPolygon";
-            this.chkPolygon.Size = new System.Drawing.Size(64, 17);
-            this.chkPolygon.TabIndex = 0;
-            this.chkPolygon.Text = "Polygon";
-            this.chkPolygon.UseVisualStyleBackColor = true;
-            // 
-            // chkRaster
-            // 
-            this.chkRaster.AutoSize = true;
-            this.chkRaster.Location = new System.Drawing.Point(7, 52);
-            this.chkRaster.Name = "chkRaster";
-            this.chkRaster.Size = new System.Drawing.Size(87, 17);
-            this.chkRaster.TabIndex = 1;
-            this.chkRaster.Text = "Snow Raster";
-            this.chkRaster.UseVisualStyleBackColor = true;
-            // 
-            // chkBackground
-            // 
-            this.chkBackground.AutoSize = true;
-            this.chkBackground.Location = new System.Drawing.Point(6, 87);
-            this.chkBackground.Name = "chkBackground";
-            this.chkBackground.Size = new System.Drawing.Size(108, 17);
-            this.chkBackground.TabIndex = 2;
-            this.chkBackground.Text = "Background Map";
-            this.chkBackground.UseVisualStyleBackColor = true;
             // 
             // spcMain
             // 
@@ -272,11 +275,41 @@
             this.spcMain.SplitterDistance = 502;
             this.spcMain.TabIndex = 10;
             // 
+            // btnZoomIn
+            // 
+            this.btnZoomIn.Location = new System.Drawing.Point(21, 81);
+            this.btnZoomIn.Name = "btnZoomIn";
+            this.btnZoomIn.Size = new System.Drawing.Size(43, 36);
+            this.btnZoomIn.TabIndex = 11;
+            this.btnZoomIn.Text = "Zoom In";
+            this.btnZoomIn.UseVisualStyleBackColor = true;
+            // 
+            // btnZoomOut
+            // 
+            this.btnZoomOut.Location = new System.Drawing.Point(21, 118);
+            this.btnZoomOut.Name = "btnZoomOut";
+            this.btnZoomOut.Size = new System.Drawing.Size(43, 36);
+            this.btnZoomOut.TabIndex = 12;
+            this.btnZoomOut.Text = "Zoom Out";
+            this.btnZoomOut.UseVisualStyleBackColor = true;
+            // 
+            // btnZoomExtents
+            // 
+            this.btnZoomExtents.Location = new System.Drawing.Point(23, 160);
+            this.btnZoomExtents.Name = "btnZoomExtents";
+            this.btnZoomExtents.Size = new System.Drawing.Size(43, 36);
+            this.btnZoomExtents.TabIndex = 13;
+            this.btnZoomExtents.Text = "Zoom Extent";
+            this.btnZoomExtents.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 362);
+            this.Controls.Add(this.btnZoomExtents);
+            this.Controls.Add(this.btnZoomOut);
+            this.Controls.Add(this.btnZoomIn);
             this.Controls.Add(this.spcMain);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.btnSave);
@@ -292,10 +325,10 @@
             this.grpUnits.ResumeLayout(false);
             this.grpUnits.PerformLayout();
             this.pnlLegendandResults.ResumeLayout(false);
-            this.grpResults.ResumeLayout(false);
-            this.grpResults.PerformLayout();
             this.grpLegend.ResumeLayout(false);
             this.grpLegend.PerformLayout();
+            this.grpResults.ResumeLayout(false);
+            this.grpResults.PerformLayout();
             this.spcMain.Panel1.ResumeLayout(false);
             this.spcMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
@@ -326,6 +359,9 @@
         private System.Windows.Forms.GroupBox grpResults;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.SplitContainer spcMain;
+        private System.Windows.Forms.Button btnZoomIn;
+        private System.Windows.Forms.Button btnZoomOut;
+        private System.Windows.Forms.Button btnZoomExtents;
     }
 }
 
