@@ -22,5 +22,33 @@ namespace SnowExplorer
             frmGetData dataForm = new frmGetData();
             dataForm.Show();
         }
+
+        private void btnZoomIn_Click(object sender, EventArgs e)
+        {
+            mapMain.ZoomIn();
+        }
+
+        private void btnZoomOut_Click(object sender, EventArgs e)
+        {
+            mapMain.ZoomOut();
+        }
+
+        private void btnZoomExtents_Click(object sender, EventArgs e)
+        {
+            mapMain.ZoomToMaxExtent();
+        }
+
+        private void btnPan_Click(object sender, EventArgs e)
+        {
+            if (mapMain.FunctionMode == DotSpatial.Controls.FunctionMode.None)
+            {
+                mapMain.FunctionMode = DotSpatial.Controls.FunctionMode.Pan;
+            }
+            else
+            {
+                mapMain.FunctionMode = DotSpatial.Controls.FunctionMode.None;
+            }
+
+        }
     }
 }

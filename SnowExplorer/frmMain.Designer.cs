@@ -51,6 +51,7 @@
             this.btnZoomIn = new System.Windows.Forms.Button();
             this.btnZoomOut = new System.Windows.Forms.Button();
             this.btnZoomExtents = new System.Windows.Forms.Button();
+            this.btnPan = new System.Windows.Forms.Button();
             this.grpUnits.SuspendLayout();
             this.pnlLegendandResults.SuspendLayout();
             this.grpLegend.SuspendLayout();
@@ -262,7 +263,7 @@
             this.spcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.spcMain.Location = new System.Drawing.Point(18, 78);
+            this.spcMain.Location = new System.Drawing.Point(18, 81);
             this.spcMain.Name = "spcMain";
             // 
             // spcMain.Panel1
@@ -280,34 +281,48 @@
             // 
             this.btnZoomIn.Location = new System.Drawing.Point(21, 81);
             this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.Size = new System.Drawing.Size(43, 36);
+            this.btnZoomIn.Size = new System.Drawing.Size(51, 36);
             this.btnZoomIn.TabIndex = 11;
             this.btnZoomIn.Text = "Zoom In";
             this.btnZoomIn.UseVisualStyleBackColor = true;
+            this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
             // 
             // btnZoomOut
             // 
-            this.btnZoomOut.Location = new System.Drawing.Point(21, 118);
+            this.btnZoomOut.Location = new System.Drawing.Point(21, 121);
             this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.Size = new System.Drawing.Size(43, 36);
+            this.btnZoomOut.Size = new System.Drawing.Size(51, 36);
             this.btnZoomOut.TabIndex = 12;
             this.btnZoomOut.Text = "Zoom Out";
             this.btnZoomOut.UseVisualStyleBackColor = true;
+            this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
             // 
             // btnZoomExtents
             // 
-            this.btnZoomExtents.Location = new System.Drawing.Point(23, 160);
+            this.btnZoomExtents.Location = new System.Drawing.Point(21, 161);
             this.btnZoomExtents.Name = "btnZoomExtents";
-            this.btnZoomExtents.Size = new System.Drawing.Size(43, 36);
+            this.btnZoomExtents.Size = new System.Drawing.Size(51, 36);
             this.btnZoomExtents.TabIndex = 13;
-            this.btnZoomExtents.Text = "Zoom Extent";
+            this.btnZoomExtents.Text = "Extent";
             this.btnZoomExtents.UseVisualStyleBackColor = true;
+            this.btnZoomExtents.Click += new System.EventHandler(this.btnZoomExtents_Click);
+            // 
+            // btnPan
+            // 
+            this.btnPan.Location = new System.Drawing.Point(21, 201);
+            this.btnPan.Name = "btnPan";
+            this.btnPan.Size = new System.Drawing.Size(51, 36);
+            this.btnPan.TabIndex = 14;
+            this.btnPan.Text = "Pan Toggle";
+            this.btnPan.UseVisualStyleBackColor = true;
+            this.btnPan.Click += new System.EventHandler(this.btnPan_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 362);
+            this.Controls.Add(this.btnPan);
             this.Controls.Add(this.btnZoomExtents);
             this.Controls.Add(this.btnZoomOut);
             this.Controls.Add(this.btnZoomIn);
@@ -363,6 +378,7 @@
         private System.Windows.Forms.Button btnZoomIn;
         private System.Windows.Forms.Button btnZoomOut;
         private System.Windows.Forms.Button btnZoomExtents;
+        private System.Windows.Forms.Button btnPan;
     }
 }
 
