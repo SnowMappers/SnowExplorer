@@ -15,6 +15,7 @@ namespace SnowExplorer
         public frmMain()
         {
             InitializeComponent();
+            appManager1.LoadExtensions();
         }
 
         private void btnGetData_Click(object sender, EventArgs e)
@@ -48,6 +49,11 @@ namespace SnowExplorer
             {
                 mapMain.FunctionMode = DotSpatial.Controls.FunctionMode.None;
             }
+
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
 
         }
     }
