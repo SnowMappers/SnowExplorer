@@ -21,6 +21,7 @@ namespace SnowExplorer
         private void btnGetData_Click(object sender, EventArgs e)
         {
             frmGetData dataForm = new frmGetData();
+            dataForm.MainMap = mapMain;
             dataForm.Show();
         }
 

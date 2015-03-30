@@ -32,9 +32,6 @@
             this.dtpTime = new System.Windows.Forms.DateTimePicker();
             this.btnFile = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
-            this.lblLocalFile = new System.Windows.Forms.Label();
-            this.txtFileName = new System.Windows.Forms.TextBox();
-            this.btnBrowse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnInternet
@@ -55,12 +52,13 @@
             // 
             // btnFile
             // 
-            this.btnFile.Location = new System.Drawing.Point(209, 127);
+            this.btnFile.Location = new System.Drawing.Point(209, 126);
             this.btnFile.Name = "btnFile";
             this.btnFile.Size = new System.Drawing.Size(85, 44);
             this.btnFile.TabIndex = 2;
             this.btnFile.Text = "Get Data From File";
             this.btnFile.UseVisualStyleBackColor = true;
+            this.btnFile.Click += new System.EventHandler(this.btnFile_Click);
             // 
             // lblTime
             // 
@@ -71,40 +69,11 @@
             this.lblTime.TabIndex = 3;
             this.lblTime.Text = "Select the date:";
             // 
-            // lblLocalFile
-            // 
-            this.lblLocalFile.AutoSize = true;
-            this.lblLocalFile.Location = new System.Drawing.Point(13, 132);
-            this.lblLocalFile.Name = "lblLocalFile";
-            this.lblLocalFile.Size = new System.Drawing.Size(128, 13);
-            this.lblLocalFile.TabIndex = 4;
-            this.lblLocalFile.Text = "Select the local raster file:";
-            // 
-            // txtFileName
-            // 
-            this.txtFileName.Location = new System.Drawing.Point(11, 151);
-            this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(191, 20);
-            this.txtFileName.TabIndex = 5;
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.Location = new System.Drawing.Point(140, 127);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(62, 23);
-            this.btnBrowse.TabIndex = 6;
-            this.btnBrowse.Text = "Browse..";
-            this.btnBrowse.UseVisualStyleBackColor = true;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
-            // 
             // frmGetData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(306, 182);
-            this.Controls.Add(this.btnBrowse);
-            this.Controls.Add(this.txtFileName);
-            this.Controls.Add(this.lblLocalFile);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.btnFile);
             this.Controls.Add(this.dtpTime);
@@ -122,8 +91,5 @@
         private System.Windows.Forms.DateTimePicker dtpTime;
         private System.Windows.Forms.Button btnFile;
         private System.Windows.Forms.Label lblTime;
-        private System.Windows.Forms.Label lblLocalFile;
-        private System.Windows.Forms.TextBox txtFileName;
-        private System.Windows.Forms.Button btnBrowse;
     }
 }

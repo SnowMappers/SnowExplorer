@@ -41,10 +41,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.pnlLegendandResults = new System.Windows.Forms.Panel();
-            this.grpLegend = new System.Windows.Forms.GroupBox();
-            this.chkBackground = new System.Windows.Forms.CheckBox();
-            this.chkRaster = new System.Windows.Forms.CheckBox();
-            this.chkPolygon = new System.Windows.Forms.CheckBox();
+            this.spatialDockManager1 = new DotSpatial.Controls.SpatialDockManager();
             this.grpResults = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.spcMain = new System.Windows.Forms.SplitContainer();
@@ -53,21 +50,20 @@
             this.btnZoomExtents = new System.Windows.Forms.Button();
             this.btnPan = new System.Windows.Forms.Button();
             this.appManager1 = new DotSpatial.Controls.AppManager();
-            this.spatialDockManager1 = new DotSpatial.Controls.SpatialDockManager();
             this.spatialHeaderControl1 = new DotSpatial.Controls.SpatialHeaderControl();
+            this.legend1 = new DotSpatial.Controls.Legend();
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.legend1 = new DotSpatial.Controls.Legend();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.grpUnits.SuspendLayout();
             this.pnlLegendandResults.SuspendLayout();
-            this.grpLegend.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).BeginInit();
+            this.spatialDockManager1.SuspendLayout();
             this.grpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
             this.spcMain.Panel1.SuspendLayout();
             this.spcMain.Panel2.SuspendLayout();
             this.spcMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).BeginInit();
-            this.spatialDockManager1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
             this.spatialStatusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +79,7 @@
             this.mapMain.FunctionMode = DotSpatial.Controls.FunctionMode.None;
             this.mapMain.IsBusy = false;
             this.mapMain.IsZoomedToMaxExtent = false;
-            this.mapMain.Legend = null;
+            this.mapMain.Legend = this.legend1;
             this.mapMain.Location = new System.Drawing.Point(0, 0);
             this.mapMain.Name = "mapMain";
             this.mapMain.ProgressHandler = null;
@@ -192,8 +188,8 @@
             // 
             // pnlLegendandResults
             // 
+            this.pnlLegendandResults.Controls.Add(this.legend1);
             this.pnlLegendandResults.Controls.Add(this.spatialDockManager1);
-            this.pnlLegendandResults.Controls.Add(this.grpLegend);
             this.pnlLegendandResults.Controls.Add(this.grpResults);
             this.pnlLegendandResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLegendandResults.Location = new System.Drawing.Point(0, 0);
@@ -201,49 +197,15 @@
             this.pnlLegendandResults.Size = new System.Drawing.Size(145, 269);
             this.pnlLegendandResults.TabIndex = 9;
             // 
-            // grpLegend
+            // spatialDockManager1
             // 
-            this.grpLegend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpLegend.Controls.Add(this.chkBackground);
-            this.grpLegend.Controls.Add(this.chkRaster);
-            this.grpLegend.Controls.Add(this.chkPolygon);
-            this.grpLegend.Location = new System.Drawing.Point(15, 24);
-            this.grpLegend.Name = "grpLegend";
-            this.grpLegend.Size = new System.Drawing.Size(114, 120);
-            this.grpLegend.TabIndex = 1;
-            this.grpLegend.TabStop = false;
-            this.grpLegend.Text = "Legend";
-            // 
-            // chkBackground
-            // 
-            this.chkBackground.AutoSize = true;
-            this.chkBackground.Location = new System.Drawing.Point(6, 87);
-            this.chkBackground.Name = "chkBackground";
-            this.chkBackground.Size = new System.Drawing.Size(108, 17);
-            this.chkBackground.TabIndex = 2;
-            this.chkBackground.Text = "Background Map";
-            this.chkBackground.UseVisualStyleBackColor = true;
-            // 
-            // chkRaster
-            // 
-            this.chkRaster.AutoSize = true;
-            this.chkRaster.Location = new System.Drawing.Point(7, 52);
-            this.chkRaster.Name = "chkRaster";
-            this.chkRaster.Size = new System.Drawing.Size(87, 17);
-            this.chkRaster.TabIndex = 1;
-            this.chkRaster.Text = "Snow Raster";
-            this.chkRaster.UseVisualStyleBackColor = true;
-            // 
-            // chkPolygon
-            // 
-            this.chkPolygon.AutoSize = true;
-            this.chkPolygon.Location = new System.Drawing.Point(7, 19);
-            this.chkPolygon.Name = "chkPolygon";
-            this.chkPolygon.Size = new System.Drawing.Size(64, 17);
-            this.chkPolygon.TabIndex = 0;
-            this.chkPolygon.Text = "Polygon";
-            this.chkPolygon.UseVisualStyleBackColor = true;
+            this.spatialDockManager1.Location = new System.Drawing.Point(22, 259);
+            this.spatialDockManager1.Name = "spatialDockManager1";
+            this.spatialDockManager1.Size = new System.Drawing.Size(54, 14);
+            this.spatialDockManager1.SplitterDistance = 25;
+            this.spatialDockManager1.TabControl1 = null;
+            this.spatialDockManager1.TabControl2 = null;
+            this.spatialDockManager1.TabIndex = 2;
             // 
             // grpResults
             // 
@@ -338,30 +300,41 @@
             this.appManager1.ProgressHandler = this.spatialStatusStrip1;
             this.appManager1.ShowExtensionsDialogMode = DotSpatial.Controls.ShowExtensionsDialogMode.Default;
             // 
-            // spatialDockManager1
-            // 
-            this.spatialDockManager1.Location = new System.Drawing.Point(15, 252);
-            this.spatialDockManager1.Name = "spatialDockManager1";
-            this.spatialDockManager1.Size = new System.Drawing.Size(54, 14);
-            this.spatialDockManager1.SplitterDistance = 25;
-            this.spatialDockManager1.TabControl1 = null;
-            this.spatialDockManager1.TabControl2 = null;
-            this.spatialDockManager1.TabIndex = 2;
-            // 
             // spatialHeaderControl1
             // 
             this.spatialHeaderControl1.ApplicationManager = null;
             this.spatialHeaderControl1.MenuStrip = null;
             this.spatialHeaderControl1.ToolbarsContainer = null;
             // 
+            // legend1
+            // 
+            this.legend1.BackColor = System.Drawing.Color.White;
+            this.legend1.ControlRectangle = new System.Drawing.Rectangle(0, 0, 142, 141);
+            this.legend1.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
+            this.legend1.HorizontalScrollEnabled = true;
+            this.legend1.Indentation = 30;
+            this.legend1.IsInitialized = false;
+            this.legend1.Location = new System.Drawing.Point(3, 3);
+            this.legend1.MinimumSize = new System.Drawing.Size(5, 5);
+            this.legend1.Name = "legend1";
+            this.legend1.ProgressHandler = null;
+            this.legend1.ResetOnResize = false;
+            this.legend1.SelectionFontColor = System.Drawing.Color.Black;
+            this.legend1.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
+            this.legend1.Size = new System.Drawing.Size(142, 141);
+            this.legend1.TabIndex = 16;
+            this.legend1.Text = "legend1";
+            this.legend1.VerticalScrollEnabled = true;
+            // 
             // spatialStatusStrip1
             // 
             this.spatialStatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar1});
+            this.toolStripProgressBar1,
+            this.toolStripStatusLabel1});
             this.spatialStatusStrip1.Location = new System.Drawing.Point(0, 340);
             this.spatialStatusStrip1.Name = "spatialStatusStrip1";
             this.spatialStatusStrip1.ProgressBar = this.toolStripProgressBar1;
-            this.spatialStatusStrip1.ProgressLabel = null;
+            this.spatialStatusStrip1.ProgressLabel = this.toolStripStatusLabel1;
             this.spatialStatusStrip1.Size = new System.Drawing.Size(684, 22);
             this.spatialStatusStrip1.TabIndex = 15;
             this.spatialStatusStrip1.Text = "spatialStatusStrip1";
@@ -371,32 +344,16 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
-            // legend1
+            // toolStripStatusLabel1
             // 
-            this.legend1.BackColor = System.Drawing.Color.White;
-            this.legend1.ControlRectangle = new System.Drawing.Rectangle(0, 0, 10, 10);
-            this.legend1.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
-            this.legend1.HorizontalScrollEnabled = true;
-            this.legend1.Indentation = 30;
-            this.legend1.IsInitialized = false;
-            this.legend1.Location = new System.Drawing.Point(5, 327);
-            this.legend1.MinimumSize = new System.Drawing.Size(5, 5);
-            this.legend1.Name = "legend1";
-            this.legend1.ProgressHandler = null;
-            this.legend1.ResetOnResize = false;
-            this.legend1.SelectionFontColor = System.Drawing.Color.Black;
-            this.legend1.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
-            this.legend1.Size = new System.Drawing.Size(10, 10);
-            this.legend1.TabIndex = 16;
-            this.legend1.Text = "legend1";
-            this.legend1.VerticalScrollEnabled = true;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 362);
-            this.Controls.Add(this.legend1);
             this.Controls.Add(this.spatialStatusStrip1);
             this.Controls.Add(this.btnPan);
             this.Controls.Add(this.btnZoomExtents);
@@ -418,16 +375,14 @@
             this.grpUnits.ResumeLayout(false);
             this.grpUnits.PerformLayout();
             this.pnlLegendandResults.ResumeLayout(false);
-            this.grpLegend.ResumeLayout(false);
-            this.grpLegend.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).EndInit();
+            this.spatialDockManager1.ResumeLayout(false);
             this.grpResults.ResumeLayout(false);
             this.grpResults.PerformLayout();
             this.spcMain.Panel1.ResumeLayout(false);
             this.spcMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
             this.spcMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).EndInit();
-            this.spatialDockManager1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
             this.spatialStatusStrip1.ResumeLayout(false);
             this.spatialStatusStrip1.PerformLayout();
@@ -450,10 +405,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Panel pnlLegendandResults;
-        private System.Windows.Forms.GroupBox grpLegend;
-        private System.Windows.Forms.CheckBox chkBackground;
-        private System.Windows.Forms.CheckBox chkRaster;
-        private System.Windows.Forms.CheckBox chkPolygon;
         private System.Windows.Forms.GroupBox grpResults;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.SplitContainer spcMain;
@@ -467,6 +418,7 @@
         private DotSpatial.Controls.Legend legend1;
         private DotSpatial.Controls.SpatialStatusStrip spatialStatusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
