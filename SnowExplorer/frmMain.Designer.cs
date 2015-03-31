@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.mapMain = new DotSpatial.Controls.Map();
+            this.legend1 = new DotSpatial.Controls.Legend();
             this.btnGetData = new System.Windows.Forms.Button();
             this.btnDrawPolygon = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
@@ -51,7 +52,6 @@
             this.btnPan = new System.Windows.Forms.Button();
             this.appManager1 = new DotSpatial.Controls.AppManager();
             this.spatialHeaderControl1 = new DotSpatial.Controls.SpatialHeaderControl();
-            this.legend1 = new DotSpatial.Controls.Legend();
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -89,6 +89,28 @@
             this.mapMain.SelectionEnabled = true;
             this.mapMain.Size = new System.Drawing.Size(502, 269);
             this.mapMain.TabIndex = 0;
+            this.mapMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseClick);
+            this.mapMain.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseDoubleClick);
+            // 
+            // legend1
+            // 
+            this.legend1.BackColor = System.Drawing.Color.White;
+            this.legend1.ControlRectangle = new System.Drawing.Rectangle(0, 0, 142, 141);
+            this.legend1.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
+            this.legend1.HorizontalScrollEnabled = true;
+            this.legend1.Indentation = 30;
+            this.legend1.IsInitialized = false;
+            this.legend1.Location = new System.Drawing.Point(3, 3);
+            this.legend1.MinimumSize = new System.Drawing.Size(5, 5);
+            this.legend1.Name = "legend1";
+            this.legend1.ProgressHandler = null;
+            this.legend1.ResetOnResize = false;
+            this.legend1.SelectionFontColor = System.Drawing.Color.Black;
+            this.legend1.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
+            this.legend1.Size = new System.Drawing.Size(142, 141);
+            this.legend1.TabIndex = 16;
+            this.legend1.Text = "legend1";
+            this.legend1.VerticalScrollEnabled = true;
             // 
             // btnGetData
             // 
@@ -108,6 +130,7 @@
             this.btnDrawPolygon.TabIndex = 2;
             this.btnDrawPolygon.Text = "Draw Polygon";
             this.btnDrawPolygon.UseVisualStyleBackColor = true;
+            this.btnDrawPolygon.Click += new System.EventHandler(this.btnDrawPolygon_Click);
             // 
             // btnCalculate
             // 
@@ -305,26 +328,6 @@
             this.spatialHeaderControl1.ApplicationManager = null;
             this.spatialHeaderControl1.MenuStrip = null;
             this.spatialHeaderControl1.ToolbarsContainer = null;
-            // 
-            // legend1
-            // 
-            this.legend1.BackColor = System.Drawing.Color.White;
-            this.legend1.ControlRectangle = new System.Drawing.Rectangle(0, 0, 142, 141);
-            this.legend1.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
-            this.legend1.HorizontalScrollEnabled = true;
-            this.legend1.Indentation = 30;
-            this.legend1.IsInitialized = false;
-            this.legend1.Location = new System.Drawing.Point(3, 3);
-            this.legend1.MinimumSize = new System.Drawing.Size(5, 5);
-            this.legend1.Name = "legend1";
-            this.legend1.ProgressHandler = null;
-            this.legend1.ResetOnResize = false;
-            this.legend1.SelectionFontColor = System.Drawing.Color.Black;
-            this.legend1.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
-            this.legend1.Size = new System.Drawing.Size(142, 141);
-            this.legend1.TabIndex = 16;
-            this.legend1.Text = "legend1";
-            this.legend1.VerticalScrollEnabled = true;
             // 
             // spatialStatusStrip1
             // 
