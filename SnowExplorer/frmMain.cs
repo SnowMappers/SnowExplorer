@@ -111,7 +111,7 @@ namespace SnowExplorer
 
             polygonLayer.LegendText = "Polygon";
 
-            MessageBox.Show("Click on the map to draw a ploygon. Double click to stop drawing.");
+            MessageBox.Show("Click on the map to draw a ploygon. Right click to start a new polygon. Double click to stop drawing.");
 
             //intializes drawing polygon mode
             firstClick = true;
@@ -160,7 +160,7 @@ namespace SnowExplorer
                         existingFeature.Coordinates.Add(coord);
 
                         //refresh the map if line has 2 or more points
-                        if (existingFeature.Coordinates.Count >= 0)
+                        if (existingFeature.Coordinates.Count != 0)
                         {
                             //refresh the map
                             polygonF.InitializeVertices();
@@ -182,7 +182,45 @@ namespace SnowExplorer
 
         private void mapMain_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-          
+
+
+            Coordinate coord = mapMain.PixelToProj(e.Location);
+
+            if (polygonmouseClick == true)
+            {
+                //Creat a list to contain the polygon coordinates
+                List<Coordinate> polygonArray = new List<Coordinate>();
+
+                //Create an instance for LinearRing class.
+                //We pass the polygon List to the constructor of this class
+                LinearRing polygonGeometry = new LinearRing(polygonArray);
+
+                //add polygonGeomety instance to polygonFeature
+                IFeature polygonFeature = polygonF.AddFeature(polygonGeometry);
+
+                //add first coordinate
+                polygonFeature.Coordinates.Add(coord);
+
+                //set the polygon feature attribute
+                polygonID = polygonID + 1;
+                polygonFeature.DataRow["PolygonID"] = polygonID;
+
+                IFeature existingFeature = (IFeature)polygonF.Features[polygonF.Features.Count - 1];
+
+                existingFeature.Coordinates.Add(coord);
+
+                //refresh the map if line has 2 or more points
+                if (existingFeature.Coordinates.Count >= 0)
+                {
+                    //refresh the map
+                    polygonF.InitializeVertices();
+                    mapMain.ResetBuffer();
+                }
+            
+                polygonF.SaveAs("D:\\GISWill\\polygonF.shp",true);
+                polygonmouseClick = false;
+                mapMain.Cursor = Cursors.Arrow;
+            }
         }
     }
 }
