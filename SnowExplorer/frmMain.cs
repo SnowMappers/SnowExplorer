@@ -188,6 +188,11 @@ namespace SnowExplorer
 
             if (polygonmouseClick == true)
             {
+                
+                
+                
+                
+                
                 //Creat a list to contain the polygon coordinates
                 List<Coordinate> polygonArray = new List<Coordinate>();
 
@@ -203,21 +208,17 @@ namespace SnowExplorer
 
                 //set the polygon feature attribute
                 polygonID = polygonID + 1;
-                polygonFeature.DataRow["PolygonID"] = polygonID;
+                polygonFeature.DataRow["PolygonID"] = polygonID;         
+             
+                polygonFeature.Coordinates.Add(polygonFeature.Coordinates[0]);
 
-                IFeature existingFeature = (IFeature)polygonF.Features[polygonF.Features.Count - 1];
 
-                existingFeature.Coordinates.Add(coord);
+                polygonF.InitializeVertices();
+                   mapMain.ResetBuffer();
 
-                //refresh the map if line has 2 or more points
-                if (existingFeature.Coordinates.Count >= 0)
-                {
-                    //refresh the map
-                    polygonF.InitializeVertices();
-                    mapMain.ResetBuffer();
-                }
-            
-                polygonF.SaveAs("D:\\GISWill\\polygonF.shp",true);
+
+                
+                polygonF.SaveAs("polygonF.shp",true);
                 polygonmouseClick = false;
                 mapMain.Cursor = Cursors.Arrow;
             }
