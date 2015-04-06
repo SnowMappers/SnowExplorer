@@ -5,6 +5,7 @@ using DotSpatial.Topology;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -17,7 +18,13 @@ namespace SnowExplorer
 
     public partial class frmMain : Form
     {
-
+        //Exporting basically gives this form a name that the plugins can see
+        //A container contorl is a control that can hold other controls. 
+        //These two lines are required to support 3rd party plugins
+        //[Export("Shell", typeof(ContainerControl))]
+        //private static ContainerControl Shell;
+        
+        
         //*************polygon Shapefile variables***************
         //which type of shapefile is created
         string shapeType;
@@ -28,6 +35,11 @@ namespace SnowExplorer
         //the id of the polygon
         int polygonID = 0;
 
+        //the x coordinates
+        List<double> xCoordinates = new List<double>();
+        //the y coordinates
+        List<double> yCoordinates = new List<double>();
+
         //differentiate between right and left mouse clicks
         bool polygonmouseClick = false;
 
@@ -37,8 +49,12 @@ namespace SnowExplorer
         //************* End Polygon Variables ****************
 
         public frmMain()
-        {
+        {   
             InitializeComponent();
+
+            //Set this form as a "container control" so the plugins know where to put themselves.
+            //Shell = this;
+
             appManager1.LoadExtensions();
         }
 
@@ -146,6 +162,10 @@ namespace SnowExplorer
                         //add first coordinate
                         polygonFeature.Coordinates.Add(coord);
 
+                        //add to the list of coordinates
+                        xCoordinates.Add(coord.X);
+                        yCoordinates.Add(coord.Y);
+
                         //set the polygon feature attribute
                         polygonID = polygonID + 1;
                         polygonFeature.DataRow["PolygonID"] = polygonID;
@@ -158,6 +178,10 @@ namespace SnowExplorer
                         IFeature existingFeature = (IFeature)polygonF.Features[polygonF.Features.Count - 1];
 
                         existingFeature.Coordinates.Add(coord);
+
+                        //add to the list of coordinates
+                        xCoordinates.Add(coord.X);
+                        yCoordinates.Add(coord.Y);
 
                         //refresh the map if line has 2 or more points
                         if (existingFeature.Coordinates.Count != 0)
@@ -173,9 +197,7 @@ namespace SnowExplorer
             else
             {
                 //right click - reset first mouse click
-                firstClick = true;  
-          
-
+                firstClick = true;            
             }
            
         }
@@ -184,41 +206,45 @@ namespace SnowExplorer
         {
 
 
-            Coordinate coord = mapMain.PixelToProj(e.Location);
-
             if (polygonmouseClick == true)
             {
-                
-                
-                
-                
-                
+                //get polygonGeomety instance of existing polygonFeature
+                IFeature polygonFeature = polygonF.GetFeature(0);
+
+                //add first coordinate
+                Coordinate coord = polygonFeature.Coordinates[0];
+                polygonFeature.Coordinates.Add(coord);
+
+                polygonF.InitializeVertices();
+                mapMain.ResetBuffer();
+
+                //add first coordinate to the list
+                xCoordinates.Add(coord.X);
+                yCoordinates.Add(coord.Y);
+
+                //now we create completely new polygon featureset
+                FeatureSet polygonFNew = new FeatureSet(FeatureType.Polygon);
+                //we add new feature
                 //Creat a list to contain the polygon coordinates
                 List<Coordinate> polygonArray = new List<Coordinate>();
+                for (int i = 0; i < xCoordinates.Count; i++)
+                {
+                    polygonArray.Add(new Coordinate(xCoordinates[i], yCoordinates[i]));
+                }
 
                 //Create an instance for LinearRing class.
                 //We pass the polygon List to the constructor of this class
                 LinearRing polygonGeometry = new LinearRing(polygonArray);
+                DotSpatial.Topology.Polygon polygon = new Polygon(polygonGeometry);
 
                 //add polygonGeomety instance to polygonFeature
-                IFeature polygonFeature = polygonF.AddFeature(polygonGeometry);
+                IFeature polygonFeatureNew = polygonFNew.AddFeature(polygon);
 
-                //add first coordinate
-                polygonFeature.Coordinates.Add(coord);
+                FeatureType ft = polygonFNew.FeatureType;
 
-                //set the polygon feature attribute
-                polygonID = polygonID + 1;
-                polygonFeature.DataRow["PolygonID"] = polygonID;         
-             
-                polygonFeature.Coordinates.Add(polygonFeature.Coordinates[0]);
-
-
-                polygonF.InitializeVertices();
-                   mapMain.ResetBuffer();
-
+                polygonFNew.SaveAs("polygonF.shp",true);
 
                 
-                polygonF.SaveAs("polygonF.shp",true);
                 polygonmouseClick = false;
                 mapMain.Cursor = Cursors.Arrow;
             }

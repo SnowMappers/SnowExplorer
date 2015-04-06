@@ -51,10 +51,10 @@
             this.btnZoomExtents = new System.Windows.Forms.Button();
             this.btnPan = new System.Windows.Forms.Button();
             this.appManager1 = new DotSpatial.Controls.AppManager();
-            this.spatialHeaderControl1 = new DotSpatial.Controls.SpatialHeaderControl();
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.spatialHeaderControl1 = new DotSpatial.Controls.SpatialHeaderControl();
             this.grpUnits.SuspendLayout();
             this.pnlLegendandResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).BeginInit();
@@ -64,8 +64,8 @@
             this.spcMain.Panel1.SuspendLayout();
             this.spcMain.Panel2.SuspendLayout();
             this.spcMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
             this.spatialStatusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // mapMain
@@ -87,7 +87,7 @@
             this.mapMain.ProjectionModeReproject = DotSpatial.Controls.ActionMode.Prompt;
             this.mapMain.RedrawLayersWhileResizing = false;
             this.mapMain.SelectionEnabled = true;
-            this.mapMain.Size = new System.Drawing.Size(502, 269);
+            this.mapMain.Size = new System.Drawing.Size(502, 231);
             this.mapMain.TabIndex = 0;
             this.mapMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseClick);
             this.mapMain.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseDoubleClick);
@@ -114,7 +114,7 @@
             // 
             // btnGetData
             // 
-            this.btnGetData.Location = new System.Drawing.Point(18, 14);
+            this.btnGetData.Location = new System.Drawing.Point(18, 63);
             this.btnGetData.Name = "btnGetData";
             this.btnGetData.Size = new System.Drawing.Size(80, 50);
             this.btnGetData.TabIndex = 1;
@@ -124,7 +124,7 @@
             // 
             // btnDrawPolygon
             // 
-            this.btnDrawPolygon.Location = new System.Drawing.Point(117, 14);
+            this.btnDrawPolygon.Location = new System.Drawing.Point(117, 63);
             this.btnDrawPolygon.Name = "btnDrawPolygon";
             this.btnDrawPolygon.Size = new System.Drawing.Size(80, 50);
             this.btnDrawPolygon.TabIndex = 2;
@@ -134,7 +134,7 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(212, 14);
+            this.btnCalculate.Location = new System.Drawing.Point(212, 63);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(80, 50);
             this.btnCalculate.TabIndex = 3;
@@ -145,7 +145,7 @@
             // 
             this.grpUnits.Controls.Add(this.radEnglish);
             this.grpUnits.Controls.Add(this.radMetric);
-            this.grpUnits.Location = new System.Drawing.Point(309, 6);
+            this.grpUnits.Location = new System.Drawing.Point(309, 55);
             this.grpUnits.Name = "grpUnits";
             this.grpUnits.Size = new System.Drawing.Size(90, 57);
             this.grpUnits.TabIndex = 4;
@@ -177,7 +177,7 @@
             // cmbBackground
             // 
             this.cmbBackground.FormattingEnabled = true;
-            this.cmbBackground.Location = new System.Drawing.Point(424, 39);
+            this.cmbBackground.Location = new System.Drawing.Point(424, 88);
             this.cmbBackground.Name = "cmbBackground";
             this.cmbBackground.Size = new System.Drawing.Size(89, 21);
             this.cmbBackground.TabIndex = 5;
@@ -185,7 +185,7 @@
             // lblBackground
             // 
             this.lblBackground.AutoSize = true;
-            this.lblBackground.Location = new System.Drawing.Point(421, 23);
+            this.lblBackground.Location = new System.Drawing.Point(421, 72);
             this.lblBackground.Name = "lblBackground";
             this.lblBackground.Size = new System.Drawing.Size(92, 13);
             this.lblBackground.TabIndex = 6;
@@ -193,7 +193,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(607, 18);
+            this.btnSave.Location = new System.Drawing.Point(607, 67);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(62, 42);
             this.btnSave.TabIndex = 7;
@@ -202,7 +202,7 @@
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(527, 18);
+            this.btnOpen.Location = new System.Drawing.Point(527, 67);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(61, 42);
             this.btnOpen.TabIndex = 8;
@@ -217,7 +217,7 @@
             this.pnlLegendandResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLegendandResults.Location = new System.Drawing.Point(0, 0);
             this.pnlLegendandResults.Name = "pnlLegendandResults";
-            this.pnlLegendandResults.Size = new System.Drawing.Size(145, 269);
+            this.pnlLegendandResults.Size = new System.Drawing.Size(145, 231);
             this.pnlLegendandResults.TabIndex = 9;
             // 
             // spatialDockManager1
@@ -238,7 +238,7 @@
             this.grpResults.Controls.Add(this.textBox1);
             this.grpResults.Location = new System.Drawing.Point(11, 150);
             this.grpResults.Name = "grpResults";
-            this.grpResults.Size = new System.Drawing.Size(118, 96);
+            this.grpResults.Size = new System.Drawing.Size(118, 58);
             this.grpResults.TabIndex = 0;
             this.grpResults.TabStop = false;
             this.grpResults.Text = "Results";
@@ -251,7 +251,7 @@
             this.textBox1.Location = new System.Drawing.Point(11, 21);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(95, 64);
+            this.textBox1.Size = new System.Drawing.Size(95, 26);
             this.textBox1.TabIndex = 0;
             // 
             // spcMain
@@ -259,7 +259,7 @@
             this.spcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.spcMain.Location = new System.Drawing.Point(18, 81);
+            this.spcMain.Location = new System.Drawing.Point(18, 119);
             this.spcMain.Name = "spcMain";
             // 
             // spcMain.Panel1
@@ -269,13 +269,13 @@
             // spcMain.Panel2
             // 
             this.spcMain.Panel2.Controls.Add(this.pnlLegendandResults);
-            this.spcMain.Size = new System.Drawing.Size(651, 269);
+            this.spcMain.Size = new System.Drawing.Size(651, 231);
             this.spcMain.SplitterDistance = 502;
             this.spcMain.TabIndex = 10;
             // 
             // btnZoomIn
             // 
-            this.btnZoomIn.Location = new System.Drawing.Point(21, 81);
+            this.btnZoomIn.Location = new System.Drawing.Point(21, 123);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(51, 36);
             this.btnZoomIn.TabIndex = 11;
@@ -285,7 +285,7 @@
             // 
             // btnZoomOut
             // 
-            this.btnZoomOut.Location = new System.Drawing.Point(21, 121);
+            this.btnZoomOut.Location = new System.Drawing.Point(21, 163);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(51, 36);
             this.btnZoomOut.TabIndex = 12;
@@ -295,7 +295,7 @@
             // 
             // btnZoomExtents
             // 
-            this.btnZoomExtents.Location = new System.Drawing.Point(21, 161);
+            this.btnZoomExtents.Location = new System.Drawing.Point(21, 203);
             this.btnZoomExtents.Name = "btnZoomExtents";
             this.btnZoomExtents.Size = new System.Drawing.Size(51, 36);
             this.btnZoomExtents.TabIndex = 13;
@@ -305,7 +305,7 @@
             // 
             // btnPan
             // 
-            this.btnPan.Location = new System.Drawing.Point(21, 201);
+            this.btnPan.Location = new System.Drawing.Point(21, 243);
             this.btnPan.Name = "btnPan";
             this.btnPan.Size = new System.Drawing.Size(51, 36);
             this.btnPan.TabIndex = 14;
@@ -322,12 +322,6 @@
             this.appManager1.Map = this.mapMain;
             this.appManager1.ProgressHandler = this.spatialStatusStrip1;
             this.appManager1.ShowExtensionsDialogMode = DotSpatial.Controls.ShowExtensionsDialogMode.Default;
-            // 
-            // spatialHeaderControl1
-            // 
-            this.spatialHeaderControl1.ApplicationManager = null;
-            this.spatialHeaderControl1.MenuStrip = null;
-            this.spatialHeaderControl1.ToolbarsContainer = null;
             // 
             // spatialStatusStrip1
             // 
@@ -351,6 +345,12 @@
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // spatialHeaderControl1
+            // 
+            this.spatialHeaderControl1.ApplicationManager = null;
+            this.spatialHeaderControl1.MenuStrip = null;
+            this.spatialHeaderControl1.ToolbarsContainer = null;
             // 
             // frmMain
             // 
@@ -386,9 +386,9 @@
             this.spcMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
             this.spcMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
             this.spatialStatusStrip1.ResumeLayout(false);
             this.spatialStatusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
