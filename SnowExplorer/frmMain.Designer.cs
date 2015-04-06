@@ -140,6 +140,7 @@
             this.btnCalculate.TabIndex = 3;
             this.btnCalculate.Text = "Calculate Snow Volume";
             this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // grpUnits
             // 

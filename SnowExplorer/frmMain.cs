@@ -249,5 +249,22 @@ namespace SnowExplorer
                 mapMain.Cursor = Cursors.Arrow;
             }
         }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            //check the cell size
+            IMapRasterLayer[] rasters = mapMain.GetRasterLayers();
+            if (rasters.Length == 0)
+            {
+                MessageBox.Show("Please add the snow data layer to the map");
+                return;
+            }
+
+            IMapRasterLayer snowLayer = rasters[0];
+            IRaster snowRaster = snowLayer.DataSet;
+            double cellHeight = snowRaster.CellHeight;
+            double cellWidth = snowRaster.CellWidth;
+            MessageBox.Show("Cell Height: " + cellHeight.ToString() + "Cell Width: " + cellWidth.ToString());
+        }
     }
 }
