@@ -29,18 +29,23 @@ namespace SnowExplorer
             MapRasterLayer snowLayer = (MapRasterLayer)MainMap.AddRasterLayer();
             
             //we add new categories to the snow layer
-            IColorScheme snowColorScheme = snowLayer.Symbolizer.Scheme;
-            snowColorScheme.ClearCategories();
-            
-            ColorCategory c1 = new ColorCategory(1, 100, Color.LightBlue, Color.LightBlue);
-            c1.LegendText = "0 - 100";
-            snowColorScheme.AddCategory(c1);
 
-            ColorCategory c2 = new ColorCategory(100, 10000, Color.DarkBlue, Color.DarkBlue);
-            c2.LegendText = "> 100";
-            snowColorScheme.AddCategory(c2);
+            try
+            {
+                IColorScheme snowColorScheme = snowLayer.Symbolizer.Scheme;
+                snowColorScheme.ClearCategories();
 
-            snowLayer.WriteBitmap();
+                ColorCategory c1 = new ColorCategory(1, 100, Color.LightBlue, Color.LightBlue);
+                c1.LegendText = "0 - 100";
+                snowColorScheme.AddCategory(c1);
+
+                ColorCategory c2 = new ColorCategory(100, 10000, Color.DarkBlue, Color.DarkBlue);
+                c2.LegendText = "> 100";
+                snowColorScheme.AddCategory(c2);
+
+                snowLayer.WriteBitmap();
+            }
+            catch { }
         }
     }
 }

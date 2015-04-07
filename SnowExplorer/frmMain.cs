@@ -31,6 +31,7 @@ namespace SnowExplorer
 
         //new polygon feeture set
         FeatureSet polygonF = new FeatureSet(FeatureType.Polygon);
+        FeatureSet polygonFNew = new FeatureSet(FeatureType.Polygon);
 
         //the id of the polygon
         int polygonID = 0;
@@ -55,7 +56,7 @@ namespace SnowExplorer
             //Set this form as a "container control" so the plugins know where to put themselves.
             //Shell = this;
 
-            appManager1.LoadExtensions();
+            //appManager1.LoadExtensions();
         }
 
         private void btnGetData_Click(object sender, EventArgs e)
@@ -112,10 +113,16 @@ namespace SnowExplorer
             
             //initialize attribute table
             DataColumn column = new DataColumn("PolygonID");
+            DataColumn volume = new DataColumn("Volume");
 
             if (!polygonF.DataTable.Columns.Contains("PolygonID"))
             {
                 polygonF.DataTable.Columns.Add(column);
+            }
+
+            if (!polygonF.DataTable.Columns.Contains("Volume"))
+            {
+                polygonF.DataTable.Columns.Add(volume);
             }
 
             //add the polygon to the map layer
@@ -171,6 +178,9 @@ namespace SnowExplorer
                         polygonFeature.DataRow["PolygonID"] = polygonID;
                         firstClick = false;
 
+                        //Add volume data column 
+                        polygonFeature.DataRow["Volume"] = 0;
+
                     }
                     else
                     {
@@ -222,8 +232,8 @@ namespace SnowExplorer
                 xCoordinates.Add(coord.X);
                 yCoordinates.Add(coord.Y);
 
-                //now we create completely new polygon featureset
-                FeatureSet polygonFNew = new FeatureSet(FeatureType.Polygon);
+           
+               
                 //we add new feature
                 //Creat a list to contain the polygon coordinates
                 List<Coordinate> polygonArray = new List<Coordinate>();
@@ -265,6 +275,57 @@ namespace SnowExplorer
             double cellHeight = snowRaster.CellHeight;
             double cellWidth = snowRaster.CellWidth;
             MessageBox.Show("Cell Height: " + cellHeight.ToString() + "Cell Width: " + cellWidth.ToString());
+
+            //creates a variable for the coordinate
+            DotSpatial.Topology.Coordinate c;
+
+            //volume variables
+            double volume = 0;
+            double cellArea = cellHeight*cellWidth;
+            double cellValue = 0;
+
+            //create a feature from the polygon
+            IFeature f = polygonFNew.Features[0];
+
+            //create a new raster with the same scope as the snowRaster
+            IRaster clipped = Raster.Create("clipraster.bgd",null,snowRaster.NumColumns,snowRaster.NumRows, 1,snowRaster.DataType,null);
+            clipped.Bounds = snowRaster.Bounds;
+            clipped.Projection = snowRaster.Projection;
+
+            //look through each cell and see if it is within the polygon
+            for (int i = 0; i < snowRaster.NumRows; i++)
+            {
+                for (int j = 0; j < snowRaster.NumColumns; j++)
+                {
+                    c = snowRaster.CellToProj(i, j);
+
+                    if (f.Intersects(c))
+                    {
+                        //if the value is within the polygon add it to the new raster
+                        clipped.Value[i, j] = snowRaster.Value[i, j] ;
+                    }
+                    else
+                    {
+                        // if the value is not in the polygon ignore it
+                       clipped.Value[i,j] = clipped.NoDataValue;
+                    }
+
+
+                }
+            }
+            mapMain.Layers.Add(clipped);
+
+
+            for (int i = 0; i <clipped.NumRows; i++)
+            {
+                for (int j = 0; j<clipped.NumColumns; j++)
+                {
+                    cellValue = clipped.Value[i,j];
+                    volume = volume + cellValue*cellArea;
+                }
+            }
+
+          
         }
     }
 }
