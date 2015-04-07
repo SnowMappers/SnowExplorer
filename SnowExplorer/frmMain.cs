@@ -284,7 +284,7 @@ namespace SnowExplorer
             double cellArea = cellHeight*cellWidth;
             double cellValue = 0;
 
-            //create a feature from the polygon
+            //create a feature variable from the polygon
             IFeature f = polygonFNew.Features[0];
 
             //create a new raster with the same scope as the snowRaster
@@ -315,7 +315,7 @@ namespace SnowExplorer
             }
             mapMain.Layers.Add(clipped);
 
-
+            //Calculate the volume of the new raster
             for (int i = 0; i <clipped.NumRows; i++)
             {
                 for (int j = 0; j<clipped.NumColumns; j++)
@@ -325,7 +325,9 @@ namespace SnowExplorer
                 }
             }
 
-          
+            
+            string volText = Convert.ToString(Math.Round(volume,3));
+            textBox1.Text = volText;
         }
     }
 }
