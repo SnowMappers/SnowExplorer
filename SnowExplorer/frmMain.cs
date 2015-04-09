@@ -23,8 +23,8 @@ namespace SnowExplorer
         //These two lines are required to support 3rd party plugins
         //[Export("Shell", typeof(ContainerControl))]
         //private static ContainerControl Shell;
-        
-        
+
+
         //*************polygon Shapefile variables***************
         //which type of shapefile is created
         string shapeType;
@@ -50,7 +50,7 @@ namespace SnowExplorer
         //************* End Polygon Variables ****************
 
         public frmMain()
-        {   
+        {
             InitializeComponent();
 
             //Set this form as a "container control" so the plugins know where to put themselves.
@@ -110,7 +110,7 @@ namespace SnowExplorer
 
             //set the polygon projection to the maps
             polygonF.Projection = mapMain.Projection;
-            
+
             //initialize attribute table
             DataColumn column = new DataColumn("PolygonID");
             DataColumn volume = new DataColumn("Volume");
@@ -134,7 +134,7 @@ namespace SnowExplorer
 
             polygonLayer.LegendText = "Polygon";
 
-            MessageBox.Show("Click on the map to draw a ploygon. Right click to start a new polygon. Double click to stop drawing.");
+            MessageBox.Show("Click on the map to draw a ploygon. Double click to stop drawing.");
 
             //intializes drawing polygon mode
             firstClick = true;
@@ -204,12 +204,6 @@ namespace SnowExplorer
                 }
 
             }
-            else
-            {
-                //right click - reset first mouse click
-                firstClick = true;            
-            }
-           
         }
 
         private void mapMain_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -232,8 +226,8 @@ namespace SnowExplorer
                 xCoordinates.Add(coord.X);
                 yCoordinates.Add(coord.Y);
 
-           
-               
+
+
                 //we add new feature
                 //Creat a list to contain the polygon coordinates
                 List<Coordinate> polygonArray = new List<Coordinate>();
@@ -252,9 +246,9 @@ namespace SnowExplorer
 
                 FeatureType ft = polygonFNew.FeatureType;
 
-                polygonFNew.SaveAs("polygonF.shp",true);
+                polygonFNew.SaveAs("polygonF.shp", true);
 
-                
+
                 polygonmouseClick = false;
                 mapMain.Cursor = Cursors.Arrow;
             }
@@ -272,25 +266,30 @@ namespace SnowExplorer
 
             IMapRasterLayer snowLayer = rasters[0];
             IRaster snowRaster = snowLayer.DataSet;
-            double cellHeight = snowRaster.CellHeight;
-            double cellWidth = snowRaster.CellWidth;
-            MessageBox.Show("Cell Height: " + cellHeight.ToString() + "Cell Width: " + cellWidth.ToString());
+            double cellHeight = 0;
+            double cellWidth = 0;
+            string resampleR = "reRaster";
+
+            //MessageBox.Show("Cell Height: " + cellHeight.ToString() + "Cell Width: " + cellWidth.ToString());
 
             //creates a variable for the coordinate
             DotSpatial.Topology.Coordinate c;
-
+            
             //volume variables
             double volume = 0;
-            double cellArea = cellHeight*cellWidth;
+            double cellArea = 0;
             double cellValue = 0;
+            
+
+            
 
             //create a feature variable from the polygon
             IFeature f = polygonFNew.Features[0];
 
             //create a new raster with the same scope as the snowRaster
-            IRaster clipped = Raster.Create("clipraster.bgd",null,snowRaster.NumColumns,snowRaster.NumRows, 1,snowRaster.DataType,null);
-            clipped.Bounds = snowRaster.Bounds;
-            clipped.Projection = snowRaster.Projection;
+            IRaster cRaster = Raster.Create("clipraster.bgd", null, snowRaster.NumColumns, snowRaster.NumRows, 1, snowRaster.DataType, null);
+            cRaster.Bounds = snowRaster.Bounds;
+            cRaster.Projection = snowRaster.Projection;
 
             //look through each cell and see if it is within the polygon
             for (int i = 0; i < snowRaster.NumRows; i++)
@@ -302,32 +301,48 @@ namespace SnowExplorer
                     if (f.Intersects(c))
                     {
                         //if the value is within the polygon add it to the new raster
-                        clipped.Value[i, j] = snowRaster.Value[i, j] ;
+                        cRaster.Value[i, j] = snowRaster.Value[i, j];
                     }
                     else
                     {
                         // if the value is not in the polygon ignore it
-                       clipped.Value[i,j] = clipped.NoDataValue;
+                        cRaster.Value[i, j] = cRaster.NoDataValue;
                     }
 
 
                 }
             }
-            mapMain.Layers.Add(clipped);
+
+            //add new raster to the map
+            mapMain.Layers.Add(cRaster);
+            
+            //resample the the clipped raster and chang the cell size
+            //DotSpatial.Analysis.ResampleCells.Resample(cRaster, cellHeight, cellWidth, resampleR);
+
+            cellHeight = cRaster.CellHeight;
+            cellWidth = cRaster.CellWidth;
+            cellArea = cellHeight * cellWidth;
 
             //Calculate the volume of the new raster
-            for (int i = 0; i <clipped.NumRows; i++)
+            for (int i = 0; i < cRaster.NumRows; i++)
             {
-                for (int j = 0; j<clipped.NumColumns; j++)
+                for (int j = 0; j < cRaster.NumColumns; j++)
                 {
-                    cellValue = clipped.Value[i,j];
-                    volume = volume + cellValue*cellArea;
+                    cellValue = cRaster.Value[i, j];              
+                    volume = volume + cellValue * cellArea;
                 }
             }
 
-            
-            string volText = Convert.ToString(Math.Round(volume,3));
+            volume = volume / (1 * 10 ^ 9);
+            string volText = Convert.ToString(Math.Round(volume, 3));
             textBox1.Text = volText;
         }
+
+        private void cmbBackground_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+      
     }
 }

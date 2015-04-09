@@ -46,6 +46,8 @@ namespace SnowExplorer
                 snowLayer.WriteBitmap();
             }
             catch { }
+
+            this.Close();
         }
     }
 }

@@ -51,10 +51,10 @@
             this.btnZoomExtents = new System.Windows.Forms.Button();
             this.btnPan = new System.Windows.Forms.Button();
             this.appManager1 = new DotSpatial.Controls.AppManager();
+            this.spatialHeaderControl1 = new DotSpatial.Controls.SpatialHeaderControl();
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.spatialHeaderControl1 = new DotSpatial.Controls.SpatialHeaderControl();
             this.grpUnits.SuspendLayout();
             this.pnlLegendandResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).BeginInit();
@@ -64,8 +64,8 @@
             this.spcMain.Panel1.SuspendLayout();
             this.spcMain.Panel2.SuspendLayout();
             this.spcMain.SuspendLayout();
-            this.spatialStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
+            this.spatialStatusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mapMain
@@ -178,10 +178,15 @@
             // cmbBackground
             // 
             this.cmbBackground.FormattingEnabled = true;
+            this.cmbBackground.Items.AddRange(new object[] {
+            "DEM - Utah",
+            "Topology - Utah",
+            "Imagery -Utah"});
             this.cmbBackground.Location = new System.Drawing.Point(424, 38);
             this.cmbBackground.Name = "cmbBackground";
             this.cmbBackground.Size = new System.Drawing.Size(89, 21);
             this.cmbBackground.TabIndex = 5;
+            this.cmbBackground.SelectedIndexChanged += new System.EventHandler(this.cmbBackground_SelectedIndexChanged);
             // 
             // lblBackground
             // 
@@ -324,6 +329,12 @@
             this.appManager1.ProgressHandler = this.spatialStatusStrip1;
             this.appManager1.ShowExtensionsDialogMode = DotSpatial.Controls.ShowExtensionsDialogMode.Default;
             // 
+            // spatialHeaderControl1
+            // 
+            this.spatialHeaderControl1.ApplicationManager = null;
+            this.spatialHeaderControl1.MenuStrip = null;
+            this.spatialHeaderControl1.ToolbarsContainer = null;
+            // 
             // spatialStatusStrip1
             // 
             this.spatialStatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -346,12 +357,6 @@
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // spatialHeaderControl1
-            // 
-            this.spatialHeaderControl1.ApplicationManager = null;
-            this.spatialHeaderControl1.MenuStrip = null;
-            this.spatialHeaderControl1.ToolbarsContainer = null;
             // 
             // frmMain
             // 
@@ -387,9 +392,9 @@
             this.spcMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
             this.spcMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
             this.spatialStatusStrip1.ResumeLayout(false);
             this.spatialStatusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
