@@ -42,6 +42,7 @@
             this.btnInternet.TabIndex = 0;
             this.btnInternet.Text = "Get Data From Internet";
             this.btnInternet.UseVisualStyleBackColor = true;
+            this.btnInternet.Click += new System.EventHandler(this.btnInternet_Click);
             // 
             // dtpTime
             // 

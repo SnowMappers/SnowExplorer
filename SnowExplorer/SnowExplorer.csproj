@@ -83,6 +83,10 @@
     <Reference Include="DotSpatial.Topology">
       <HintPath>..\..\..\..\Users\Jiri\Downloads\DotSpatial_Full.1.7\DotSpatial.Topology.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -96,6 +100,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataFetcher.cs" />
     <Compile Include="frmGetData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +142,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\tar-cs\tar-cs.csproj">
+      <Project>{b9189786-191b-42c7-8029-244e0da8da21}</Project>
+      <Name>tar-cs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

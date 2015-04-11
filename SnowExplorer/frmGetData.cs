@@ -49,5 +49,11 @@ namespace SnowExplorer
 
             this.Close();
         }
+
+        private void btnInternet_Click(object sender, EventArgs e)
+        {
+            DataFetcher fetcher = new DataFetcher();
+            fetcher.FetchSnow(dtpTime.Value);
+        }
     }
 }
