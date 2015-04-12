@@ -343,6 +343,11 @@ namespace SnowExplorer
             
         }
 
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            mapMain.AddLayer();
+        }
+
       
     }
 }

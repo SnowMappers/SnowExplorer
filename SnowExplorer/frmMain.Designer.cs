@@ -39,7 +39,6 @@
             this.radMetric = new System.Windows.Forms.RadioButton();
             this.cmbBackground = new System.Windows.Forms.ComboBox();
             this.lblBackground = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.pnlLegendandResults = new System.Windows.Forms.Panel();
             this.spatialDockManager1 = new DotSpatial.Controls.SpatialDockManager();
@@ -94,6 +93,9 @@
             // 
             // legend1
             // 
+            this.legend1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.legend1.BackColor = System.Drawing.Color.White;
             this.legend1.ControlRectangle = new System.Drawing.Rectangle(0, 0, 142, 141);
             this.legend1.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
@@ -197,23 +199,15 @@
             this.lblBackground.TabIndex = 6;
             this.lblBackground.Text = "Background Map:";
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(607, 17);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(62, 42);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
             // btnOpen
             // 
             this.btnOpen.Location = new System.Drawing.Point(527, 17);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(61, 42);
             this.btnOpen.TabIndex = 8;
-            this.btnOpen.Text = "Open";
+            this.btnOpen.Text = "Open File";
             this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // pnlLegendandResults
             // 
@@ -228,6 +222,7 @@
             // 
             // spatialDockManager1
             // 
+            this.spatialDockManager1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.spatialDockManager1.Location = new System.Drawing.Point(22, 259);
             this.spatialDockManager1.Name = "spatialDockManager1";
             this.spatialDockManager1.Size = new System.Drawing.Size(54, 14);
@@ -242,9 +237,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpResults.Controls.Add(this.textBox1);
-            this.grpResults.Location = new System.Drawing.Point(11, 150);
+            this.grpResults.Location = new System.Drawing.Point(11, 163);
             this.grpResults.Name = "grpResults";
-            this.grpResults.Size = new System.Drawing.Size(118, 108);
+            this.grpResults.Size = new System.Drawing.Size(118, 95);
             this.grpResults.TabIndex = 0;
             this.grpResults.TabStop = false;
             this.grpResults.Text = "Results";
@@ -257,7 +252,7 @@
             this.textBox1.Location = new System.Drawing.Point(11, 21);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(95, 76);
+            this.textBox1.Size = new System.Drawing.Size(95, 63);
             this.textBox1.TabIndex = 0;
             // 
             // spcMain
@@ -370,7 +365,6 @@
             this.Controls.Add(this.btnZoomIn);
             this.Controls.Add(this.spcMain);
             this.Controls.Add(this.btnOpen);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblBackground);
             this.Controls.Add(this.cmbBackground);
             this.Controls.Add(this.grpUnits);
@@ -411,7 +405,6 @@
         private System.Windows.Forms.RadioButton radMetric;
         private System.Windows.Forms.ComboBox cmbBackground;
         private System.Windows.Forms.Label lblBackground;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Panel pnlLegendandResults;
         private System.Windows.Forms.GroupBox grpResults;
