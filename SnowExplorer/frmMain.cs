@@ -294,6 +294,7 @@ namespace SnowExplorer
             IRaster cRaster = null;
 
             //clip raster with polygon: using built-in function
+            //note: this is slow because it still makes a huge raster...
             cRaster = DotSpatial.Analysis.ClipRaster.ClipRasterWithPolygon(polygon, snowRaster, "snowRasterClip.bgd");
 
             //add the new clipped raster to the map

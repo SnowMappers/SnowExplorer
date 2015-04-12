@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
-using tar_cs;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Core;
+using ICSharpCode.SharpZipLib.Tar;
 using DotSpatial.Data;
 using System.Windows.Forms;
 
@@ -99,8 +99,6 @@ namespace SnowExplorer
             string hdrFileName = null;
 
             //now untar the required files
-            FileStream unarchFile = File.OpenRead(localFile);
-            TarReader reader = new TarReader(unarchFile);
             //the mask character indicates whether the data is whole area or u.s
             //only.
             string mask = "zz";
@@ -110,28 +108,34 @@ namespace SnowExplorer
             }
             string sweStart = String.Format("{0}_ssmv11034tS__T0001TTNATS{1}{2}", mask, date.Year.ToString(), date.Month.ToString("00"));
 
-            while (reader.MoveNext(true))
+            using (FileStream fsIn = new FileStream(localFile, FileMode.Open, FileAccess.Read))
             {
-                string fn = reader.FileInfo.FileName;
-                
-                
-                if (fn.Contains(sweStart))
+                TarInputStream tarIn = new TarInputStream(fsIn);
+                TarEntry tarEntry;
+                while ((tarEntry = tarIn.GetNextEntry()) != null)
                 {
-                    using (FileStream file = File.Create(fn))
+                    string tarEntryName = tarEntry.Name;
+
+                    if (tarEntryName.Contains(sweStart))
                     {
-                        reader.Read(file);
+                        
+                        
+                        FileStream outStr = new FileStream(tarEntryName, FileMode.Create);
+                        tarIn.CopyEntryContents(outStr);                     
+                        outStr.Close();                     
+                        
+                        string unzippedFile = ExtractGZip(tarEntryName);
+                        if (unzippedFile.ToLower().EndsWith("dat"))
+                        {
+                            datFileName = unzippedFile;
+                        }
+                        if (unzippedFile.ToLower().EndsWith("hdr"))
+                        {
+                            hdrFileName = unzippedFile;
+                        }
                     }
-                    string unzippedFile = ExtractGZip(fn);
-                    if (unzippedFile.ToLower().EndsWith("dat"))
-                    {
-                        datFileName = unzippedFile;
-                    }
-                    if (unzippedFile.ToLower().EndsWith("hdr"))
-                    {
-                        hdrFileName = unzippedFile;
-                    }
+                    
                 }
-                
             }
             return datFileName;
         }
