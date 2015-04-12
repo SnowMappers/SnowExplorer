@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGetData));
             this.btnInternet = new System.Windows.Forms.Button();
             this.dtpTime = new System.Windows.Forms.DateTimePicker();
             this.btnFile = new System.Windows.Forms.Button();
@@ -100,6 +101,7 @@
             this.Controls.Add(this.btnFile);
             this.Controls.Add(this.dtpTime);
             this.Controls.Add(this.btnInternet);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGetData";
             this.Text = "Get Snow Data";
             this.ResumeLayout(false);

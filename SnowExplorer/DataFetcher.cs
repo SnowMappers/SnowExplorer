@@ -9,6 +9,7 @@ using tar_cs;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Core;
 using DotSpatial.Data;
+using System.Windows.Forms;
 
 namespace SnowExplorer
 {
@@ -61,7 +62,16 @@ namespace SnowExplorer
             string url = makeURL(date, masked);
             string localFile = url.Substring(url.LastIndexOf("/") + 1);
             FtpWebRequest ftpRequest = (FtpWebRequest)FtpWebRequest.Create(url);
-            FtpWebResponse ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+            FtpWebResponse ftpResponse = null;
+            try
+            {
+                ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+            }
+            catch
+            {
+                throw new WebException("Cannot download file: " + url);
+            }
+
             Stream ftpStream = null;
             int bufferSize = 2048;
             ftpStream = ftpResponse.GetResponseStream();
@@ -150,7 +160,7 @@ namespace SnowExplorer
 
             //set the properties of our raster: bounds, projection, NoDataValue
             ras.Bounds = new RasterBounds(numRows, numCols, maskedExtent);
-            ras.ProjectionString = "+proj=longlat";
+            ras.ProjectionString = "+proj=longlat +datum=WGS84 +no_defs";
             ras.NoDataValue = -9999;
 
             //set the raster's values

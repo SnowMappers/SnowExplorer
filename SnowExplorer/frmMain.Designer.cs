@@ -43,7 +43,7 @@
             this.pnlLegendandResults = new System.Windows.Forms.Panel();
             this.spatialDockManager1 = new DotSpatial.Controls.SpatialDockManager();
             this.grpResults = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbVolume = new System.Windows.Forms.TextBox();
             this.spcMain = new System.Windows.Forms.SplitContainer();
             this.btnZoomIn = new System.Windows.Forms.Button();
             this.btnZoomOut = new System.Windows.Forms.Button();
@@ -97,7 +97,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.legend1.BackColor = System.Drawing.Color.White;
-            this.legend1.ControlRectangle = new System.Drawing.Rectangle(0, 0, 142, 141);
+            this.legend1.ControlRectangle = new System.Drawing.Rectangle(0, 0, 142, 154);
             this.legend1.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
             this.legend1.HorizontalScrollEnabled = true;
             this.legend1.Indentation = 30;
@@ -109,7 +109,7 @@
             this.legend1.ResetOnResize = false;
             this.legend1.SelectionFontColor = System.Drawing.Color.Black;
             this.legend1.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
-            this.legend1.Size = new System.Drawing.Size(142, 141);
+            this.legend1.Size = new System.Drawing.Size(142, 154);
             this.legend1.TabIndex = 16;
             this.legend1.Text = "legend1";
             this.legend1.VerticalScrollEnabled = true;
@@ -162,13 +162,13 @@
             this.radEnglish.Name = "radEnglish";
             this.radEnglish.Size = new System.Drawing.Size(59, 17);
             this.radEnglish.TabIndex = 1;
-            this.radEnglish.TabStop = true;
             this.radEnglish.Text = "English";
             this.radEnglish.UseVisualStyleBackColor = true;
             // 
             // radMetric
             // 
             this.radMetric.AutoSize = true;
+            this.radMetric.Checked = true;
             this.radMetric.Location = new System.Drawing.Point(6, 19);
             this.radMetric.Name = "radMetric";
             this.radMetric.Size = new System.Drawing.Size(54, 17);
@@ -236,24 +236,24 @@
             this.grpResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpResults.Controls.Add(this.textBox1);
+            this.grpResults.Controls.Add(this.tbVolume);
             this.grpResults.Location = new System.Drawing.Point(11, 163);
             this.grpResults.Name = "grpResults";
             this.grpResults.Size = new System.Drawing.Size(118, 95);
             this.grpResults.TabIndex = 0;
             this.grpResults.TabStop = false;
-            this.grpResults.Text = "Results";
+            this.grpResults.Text = "Snow Volume (m^3)";
             // 
-            // textBox1
+            // tbVolume
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(11, 21);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(95, 63);
-            this.textBox1.TabIndex = 0;
+            this.tbVolume.Location = new System.Drawing.Point(11, 21);
+            this.tbVolume.Multiline = true;
+            this.tbVolume.Name = "tbVolume";
+            this.tbVolume.Size = new System.Drawing.Size(95, 63);
+            this.tbVolume.TabIndex = 0;
             // 
             // spcMain
             // 
@@ -408,7 +408,7 @@
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Panel pnlLegendandResults;
         private System.Windows.Forms.GroupBox grpResults;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbVolume;
         private System.Windows.Forms.SplitContainer spcMain;
         private System.Windows.Forms.Button btnZoomIn;
         private System.Windows.Forms.Button btnZoomOut;

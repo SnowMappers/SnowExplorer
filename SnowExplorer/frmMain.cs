@@ -1,4 +1,5 @@
-﻿using DotSpatial.Controls;
+﻿using DotSpatial.Analysis;
+using DotSpatial.Controls;
 using DotSpatial.Data;
 using DotSpatial.Symbology;
 using DotSpatial.Topology;
@@ -8,7 +9,9 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -94,9 +97,25 @@ namespace SnowExplorer
 
         }
 
+        /// <summary>
+        /// Default loading: We add the U.S states layer to our map
+        /// </summary>
         private void frmMain_Load(object sender, EventArgs e)
         {
+            string executablePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string dataFolder = Path.Combine(executablePath, "Snow_Data");
 
+            //get path of the shapefile in the Snow_Data subfolder
+            string statesShapefile = Path.Combine(dataFolder, "us_states.shp");
+            if (File.Exists(statesShapefile))
+            {
+                //set map symbol to transparent color and black outline
+                IFeatureSet statesF = FeatureSet.Open(statesShapefile);
+                MapPolygonLayer statesLayer = new MapPolygonLayer(statesF);
+                statesLayer.Symbolizer.SetOutline(Color.Black, 1.0);
+                statesLayer.Symbolizer.SetFillColor(Color.Transparent);
+                mapMain.Layers.Add(statesLayer);
+            }
         }
 
         private void btnDrawPolygon_Click(object sender, EventArgs e)
@@ -256,7 +275,7 @@ namespace SnowExplorer
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            //check the cell size
+            //check if there is a raster in the map
             IMapRasterLayer[] rasters = mapMain.GetRasterLayers();
             if (rasters.Length == 0)
             {
@@ -264,78 +283,30 @@ namespace SnowExplorer
                 return;
             }
 
+            //we use the first raster layer for snow calculation
             IMapRasterLayer snowLayer = rasters[0];
             IRaster snowRaster = snowLayer.DataSet;
-            double cellHeight = 0;
-            double cellWidth = 0;
-            string resampleR = "reRaster";
-
-            //MessageBox.Show("Cell Height: " + cellHeight.ToString() + "Cell Width: " + cellWidth.ToString());
-
+            
             //creates a variable for the coordinate
             DotSpatial.Topology.Coordinate c;
-            
-            //volume variables
-            double volume = 0;
-            double cellArea = 0;
-            double cellValue = 0;
-            
-
-            
 
             //create a feature variable from the polygon
-            IFeature f = polygonFNew.Features[0];
+            IFeature polygon = polygonFNew.Features[0];
+            IRaster cRaster = null;
 
-            //create a new raster with the same scope as the snowRaster
-            IRaster cRaster = Raster.Create("clipraster.bgd", null, snowRaster.NumColumns, snowRaster.NumRows, 1, snowRaster.DataType, null);
-            cRaster.Bounds = snowRaster.Bounds;
-            cRaster.Projection = snowRaster.Projection;
+            //clip raster with polygon: using built-in function
+            cRaster = DotSpatial.Analysis.ClipRaster.ClipRasterWithPolygon(polygon, snowRaster, "snowRasterClip.bgd");
 
-            //look through each cell and see if it is within the polygon
-            for (int i = 0; i < snowRaster.NumRows; i++)
-            {
-                for (int j = 0; j < snowRaster.NumColumns; j++)
-                {
-                    c = snowRaster.CellToProj(i, j);
-
-                    if (f.Intersects(c))
-                    {
-                        //if the value is within the polygon add it to the new raster
-                        cRaster.Value[i, j] = snowRaster.Value[i, j];
-                    }
-                    else
-                    {
-                        // if the value is not in the polygon ignore it
-                        cRaster.Value[i, j] = cRaster.NoDataValue;
-                    }
-
-
-                }
-            }
-
-            //add new raster to the map
+            //add the new clipped raster to the map
             mapMain.Layers.Add(cRaster);
+
+            //calculate the volume using function in our VolumeCalculator class
+            VolumeCalculator volumeCalc = new VolumeCalculator();
+            double volume_m3 = volumeCalc.CalculateVolume(cRaster);
             
-            //resample the the clipped raster and chang the cell size
-            //DotSpatial.Analysis.ResampleCells.Resample(cRaster, cellHeight, cellWidth, resampleR);
-
-            cellHeight = cRaster.CellHeight;
-            cellWidth = cRaster.CellWidth;
-            cellArea = cellHeight * cellWidth;
-
-            //Calculate the volume of the new raster
-            for (int i = 0; i < cRaster.NumRows; i++)
-            {
-                for (int j = 0; j < cRaster.NumColumns; j++)
-                {
-                    cellValue = cRaster.Value[i, j];              
-                    volume = volume + cellValue * cellArea;
-                }
-            }
-
-            volume = volume / (1 * 10 ^ 9);
-            string volText = Convert.ToString(Math.Round(volume, 3));
-            textBox1.Text = volText;
+            //show the volume in the "results" textbox
+            string volText = Convert.ToString(Math.Round(volume_m3, 0));
+            tbVolume.Text = volText;
         }
 
         private void cmbBackground_SelectedIndexChanged(object sender, EventArgs e)

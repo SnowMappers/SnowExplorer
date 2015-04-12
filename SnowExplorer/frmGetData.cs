@@ -63,8 +63,18 @@ namespace SnowExplorer
 
             lblProgress.Text = "Downloading snow data...";
             DataFetcher fetcher = new DataFetcher();
-            string snowDataFile = fetcher.FetchSnow(dtpTime.Value, masked);
-            lblProgress.Text = "Snow data downloaded: " + snowDataFile;
+            string snowDataFile = null;
+            try
+            {
+                snowDataFile = fetcher.FetchSnow(dtpTime.Value, masked);
+                lblProgress.Text = "Snow data downloaded: " + snowDataFile;
+            }
+            catch (System.Net.WebException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            
             lblProgress.Text = "Reading binary grid..";
             string snowBgdFile = snowDataFile.Replace(".dat", ".bgd");
             IRaster snowRaster = fetcher.MakeSnowRaster(snowDataFile, snowBgdFile);
@@ -75,6 +85,8 @@ namespace SnowExplorer
             snowLayer.Symbolizer = sym;
             MainMap.Layers.Add(snowLayer);
             snowLayer.WriteBitmap();
+
+            this.Close();
 
         }
     }
