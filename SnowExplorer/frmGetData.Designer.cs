@@ -104,6 +104,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGetData";
             this.Text = "Get Snow Data";
+            this.Load += new System.EventHandler(this.frmGetData_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

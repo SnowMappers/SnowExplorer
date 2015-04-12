@@ -54,6 +54,7 @@
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblDate = new System.Windows.Forms.Label();
             this.grpUnits.SuspendLayout();
             this.pnlLegendandResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).BeginInit();
@@ -242,7 +243,7 @@
             this.grpResults.Size = new System.Drawing.Size(118, 95);
             this.grpResults.TabIndex = 0;
             this.grpResults.TabStop = false;
-            this.grpResults.Text = "Snow Volume (m^3)";
+            this.grpResults.Text = "Snow Volume (m)";
             // 
             // tbVolume
             // 
@@ -265,6 +266,7 @@
             // 
             // spcMain.Panel1
             // 
+            this.spcMain.Panel1.Controls.Add(this.lblDate);
             this.spcMain.Panel1.Controls.Add(this.mapMain);
             // 
             // spcMain.Panel2
@@ -353,6 +355,17 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // lblDate
+            // 
+            this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDate.BackColor = System.Drawing.Color.White;
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Location = new System.Drawing.Point(297, 9);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(197, 19);
+            this.lblDate.TabIndex = 1;
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -421,6 +434,7 @@
         private DotSpatial.Controls.SpatialStatusStrip spatialStatusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Label lblDate;
     }
 }
 

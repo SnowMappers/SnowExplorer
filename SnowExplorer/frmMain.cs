@@ -55,17 +55,13 @@ namespace SnowExplorer
         public frmMain()
         {
             InitializeComponent();
-
-            //Set this form as a "container control" so the plugins know where to put themselves.
-            //Shell = this;
-
-            //appManager1.LoadExtensions();
         }
 
         private void btnGetData_Click(object sender, EventArgs e)
         {
             frmGetData dataForm = new frmGetData();
             dataForm.MainMap = mapMain;
+            dataForm.DateLabel = lblDate;
             dataForm.Show();
         }
 
@@ -102,6 +98,9 @@ namespace SnowExplorer
         /// </summary>
         private void frmMain_Load(object sender, EventArgs e)
         {
+            //set superscript in grpVolume
+            grpResults.Text = "Snow Volume (m\xB3)";
+
             string executablePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string dataFolder = Path.Combine(executablePath, "Snow_Data");
 

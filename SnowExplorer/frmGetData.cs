@@ -23,6 +23,9 @@ namespace SnowExplorer
         //this is for accessing the main map from frmMain
         public DotSpatial.Controls.Map MainMap;
 
+        //this is the date label from frmMain
+        public Label DateLabel;
+
         private RasterSymbolizer MakeSnowSymbolizer()
         {
             RasterSymbolizer sym = new RasterSymbolizer();
@@ -64,9 +67,10 @@ namespace SnowExplorer
             lblProgress.Text = "Downloading snow data...";
             DataFetcher fetcher = new DataFetcher();
             string snowDataFile = null;
+            DateTime selectedDate = dtpTime.Value;
             try
             {
-                snowDataFile = fetcher.FetchSnow(dtpTime.Value, masked);
+                snowDataFile = fetcher.FetchSnow(selectedDate, masked);
                 lblProgress.Text = "Snow data downloaded: " + snowDataFile;
             }
             catch (System.Net.WebException ex)
@@ -86,8 +90,17 @@ namespace SnowExplorer
             MainMap.Layers.Add(snowLayer);
             snowLayer.WriteBitmap();
 
+            //set the date label on main map and close the form
+            DateLabel.Text = "SWE (mm) " + selectedDate.Date.ToString();
+
             this.Close();
 
+        }
+
+        private void frmGetData_Load(object sender, EventArgs e)
+        {
+            //set default date to yesterday
+            dtpTime.Value = DateTime.Today.AddDays(-1);
         }
     }
 }
