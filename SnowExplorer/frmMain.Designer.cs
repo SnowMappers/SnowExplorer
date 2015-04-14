@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.mapMain = new DotSpatial.Controls.Map();
             this.legend1 = new DotSpatial.Controls.Legend();
+            this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnGetData = new System.Windows.Forms.Button();
             this.btnDrawPolygon = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
@@ -51,9 +54,8 @@
             this.btnPan = new System.Windows.Forms.Button();
             this.appManager1 = new DotSpatial.Controls.AppManager();
             this.spatialHeaderControl1 = new DotSpatial.Controls.SpatialHeaderControl();
-            this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.spatialStatusStrip1.SuspendLayout();
             this.grpUnits.SuspendLayout();
             this.pnlLegendandResults.SuspendLayout();
             this.grpResults.SuspendLayout();
@@ -62,7 +64,6 @@
             this.spcMain.Panel2.SuspendLayout();
             this.spcMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
-            this.spatialStatusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mapMain
@@ -110,6 +111,29 @@
             this.legend1.TabIndex = 16;
             this.legend1.Text = "legend1";
             this.legend1.VerticalScrollEnabled = true;
+            // 
+            // spatialStatusStrip1
+            // 
+            this.spatialStatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar1,
+            this.toolStripStatusLabel1});
+            this.spatialStatusStrip1.Location = new System.Drawing.Point(0, 440);
+            this.spatialStatusStrip1.Name = "spatialStatusStrip1";
+            this.spatialStatusStrip1.ProgressBar = this.toolStripProgressBar1;
+            this.spatialStatusStrip1.ProgressLabel = this.toolStripStatusLabel1;
+            this.spatialStatusStrip1.Size = new System.Drawing.Size(684, 22);
+            this.spatialStatusStrip1.TabIndex = 15;
+            this.spatialStatusStrip1.Text = "spatialStatusStrip1";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
             // btnGetData
             // 
@@ -317,6 +341,7 @@
             // appManager1
             // 
             this.appManager1.Directories = ((System.Collections.Generic.List<string>)(resources.GetObject("appManager1.Directories")));
+            this.appManager1.DockManager = null;
             this.appManager1.HeaderControl = this.spatialHeaderControl1;
             this.appManager1.Legend = this.legend1;
             this.appManager1.Map = this.mapMain;
@@ -329,34 +354,22 @@
             this.spatialHeaderControl1.MenuStrip = null;
             this.spatialHeaderControl1.ToolbarsContainer = null;
             // 
-            // spatialStatusStrip1
+            // btnHelp
             // 
-            this.spatialStatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar1,
-            this.toolStripStatusLabel1});
-            this.spatialStatusStrip1.Location = new System.Drawing.Point(0, 440);
-            this.spatialStatusStrip1.Name = "spatialStatusStrip1";
-            this.spatialStatusStrip1.ProgressBar = this.toolStripProgressBar1;
-            this.spatialStatusStrip1.ProgressLabel = this.toolStripStatusLabel1;
-            this.spatialStatusStrip1.Size = new System.Drawing.Size(684, 22);
-            this.spatialStatusStrip1.TabIndex = 15;
-            this.spatialStatusStrip1.Text = "spatialStatusStrip1";
-            // 
-            // toolStripProgressBar1
-            // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            this.btnHelp.Location = new System.Drawing.Point(594, 17);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(61, 42);
+            this.btnHelp.TabIndex = 16;
+            this.btnHelp.Text = "HELP";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 462);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.spatialStatusStrip1);
             this.Controls.Add(this.btnPan);
             this.Controls.Add(this.btnZoomExtents);
@@ -374,6 +387,8 @@
             this.Name = "frmMain";
             this.Text = "Snow Explorer";
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.spatialStatusStrip1.ResumeLayout(false);
+            this.spatialStatusStrip1.PerformLayout();
             this.grpUnits.ResumeLayout(false);
             this.grpUnits.PerformLayout();
             this.pnlLegendandResults.ResumeLayout(false);
@@ -384,8 +399,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
             this.spcMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
-            this.spatialStatusStrip1.ResumeLayout(false);
-            this.spatialStatusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,6 +431,7 @@
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Button btnHelp;
     }
 }
 

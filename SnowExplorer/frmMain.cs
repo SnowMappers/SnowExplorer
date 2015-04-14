@@ -364,6 +364,14 @@ namespace SnowExplorer
             mapMain.AddLayer();
         }
 
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            //Opens the Help Files and Technical Documents
+            System.Diagnostics.Process.Start("EndUser.docx");
+            System.Diagnostics.Process.Start("TechSpec.docx");
+
+        }
+
       
     }
 }
