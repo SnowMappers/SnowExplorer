@@ -94,6 +94,56 @@ namespace SnowExplorer
             return volume_m3;
         }
 
+
+        /// <summary>
+        /// Calculates the snow-covered area, if the raster is Decimal Degrees (WGS84) and
+        /// the z-units are millimeters
+        /// </summary>
+        /// <param name="cRaster">the Snow Water Equivalent raster with units in mm</param>
+        /// 
+        /// <returns>a list of 2 values. First value is snow-covered area.
+        /// second value is total area. Units of area are m^2.</returns>
+        public List<double> CalculateAreaForLatLon(IRaster cRaster)
+        {
+            //area in meters squared
+            double snow_area_m2 = 0;
+            double total_area_m2 = 0;
+
+            //our raster is in decimal degrees (Lat/Lon). In this case
+            //the cell width changes with latitude!
+
+            //cell height (this is same for all rows)
+            double cellHeight_m = CalculateCellHeight(cRaster.CellHeight);
+
+            for (int row = 0; row < cRaster.NumRows; row++)
+            {
+                //cell width for the row depends on latitude
+                Coordinate lonLat = cRaster.CellToProj(0, row);
+                double lat = lonLat.Y;
+                double cellWidth_m = CalculateCellWidth(cRaster.CellWidth, lat);
+
+                for (int col = 0; col < cRaster.NumColumns; col++)
+                {
+                    //SWE in millimeters
+                    double cellValue_mm = cRaster.Value[row, col];
+                    //if cellValue is more than zero then there is some snow in the cell.
+                    if (cellValue_mm > 0)
+                    {
+                        double cellArea_m2 = cellHeight_m * cellWidth_m;
+                        //add it to the total area
+                        snow_area_m2 += cellArea_m2;
+                    }
+                    //for every cell, we add cell area to total area
+                    total_area_m2 += (cellHeight_m * cellWidth_m);
+                }
+            }
+            List<double> result = new List<double>();
+            result.Add(snow_area_m2);
+            result.Add(total_area_m2);
+            return (result);
+        }
+
+
         /// <summary>
         /// Calculates the Snow Water Equivalent volume, when the raster is in projected
         /// coordinates, the horizontal units are meters, and the SWE units are milimeters

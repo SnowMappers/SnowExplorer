@@ -41,10 +41,10 @@
             this.lblBackground = new System.Windows.Forms.Label();
             this.btnOpen = new System.Windows.Forms.Button();
             this.pnlLegendandResults = new System.Windows.Forms.Panel();
-            this.spatialDockManager1 = new DotSpatial.Controls.SpatialDockManager();
             this.grpResults = new System.Windows.Forms.GroupBox();
             this.tbVolume = new System.Windows.Forms.TextBox();
             this.spcMain = new System.Windows.Forms.SplitContainer();
+            this.lblDate = new System.Windows.Forms.Label();
             this.btnZoomIn = new System.Windows.Forms.Button();
             this.btnZoomOut = new System.Windows.Forms.Button();
             this.btnZoomExtents = new System.Windows.Forms.Button();
@@ -54,11 +54,8 @@
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblDate = new System.Windows.Forms.Label();
             this.grpUnits.SuspendLayout();
             this.pnlLegendandResults.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).BeginInit();
-            this.spatialDockManager1.SuspendLayout();
             this.grpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
             this.spcMain.Panel1.SuspendLayout();
@@ -82,20 +79,19 @@
             this.mapMain.Legend = this.legend1;
             this.mapMain.Location = new System.Drawing.Point(0, 0);
             this.mapMain.Name = "mapMain";
-            this.mapMain.ProgressHandler = null;
+            this.mapMain.ProgressHandler = this.spatialStatusStrip1;
             this.mapMain.ProjectionModeDefine = DotSpatial.Controls.ActionMode.Prompt;
             this.mapMain.ProjectionModeReproject = DotSpatial.Controls.ActionMode.Prompt;
             this.mapMain.RedrawLayersWhileResizing = false;
             this.mapMain.SelectionEnabled = true;
-            this.mapMain.Size = new System.Drawing.Size(502, 281);
+            this.mapMain.Size = new System.Drawing.Size(502, 381);
             this.mapMain.TabIndex = 0;
             this.mapMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseClick);
             this.mapMain.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseDoubleClick);
             // 
             // legend1
             // 
-            this.legend1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.legend1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.legend1.BackColor = System.Drawing.Color.White;
             this.legend1.ControlRectangle = new System.Drawing.Rectangle(0, 0, 142, 154);
@@ -155,6 +151,7 @@
             this.grpUnits.TabIndex = 4;
             this.grpUnits.TabStop = false;
             this.grpUnits.Text = "Units";
+            this.grpUnits.Visible = false;
             // 
             // radEnglish
             // 
@@ -189,6 +186,7 @@
             this.cmbBackground.Name = "cmbBackground";
             this.cmbBackground.Size = new System.Drawing.Size(89, 21);
             this.cmbBackground.TabIndex = 5;
+            this.cmbBackground.Visible = false;
             this.cmbBackground.SelectedIndexChanged += new System.EventHandler(this.cmbBackground_SelectedIndexChanged);
             // 
             // lblBackground
@@ -199,6 +197,7 @@
             this.lblBackground.Size = new System.Drawing.Size(92, 13);
             this.lblBackground.TabIndex = 6;
             this.lblBackground.Text = "Background Map:";
+            this.lblBackground.Visible = false;
             // 
             // btnOpen
             // 
@@ -213,24 +212,12 @@
             // pnlLegendandResults
             // 
             this.pnlLegendandResults.Controls.Add(this.legend1);
-            this.pnlLegendandResults.Controls.Add(this.spatialDockManager1);
             this.pnlLegendandResults.Controls.Add(this.grpResults);
             this.pnlLegendandResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLegendandResults.Location = new System.Drawing.Point(0, 0);
             this.pnlLegendandResults.Name = "pnlLegendandResults";
-            this.pnlLegendandResults.Size = new System.Drawing.Size(145, 281);
+            this.pnlLegendandResults.Size = new System.Drawing.Size(145, 381);
             this.pnlLegendandResults.TabIndex = 9;
-            // 
-            // spatialDockManager1
-            // 
-            this.spatialDockManager1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.spatialDockManager1.Location = new System.Drawing.Point(22, 259);
-            this.spatialDockManager1.Name = "spatialDockManager1";
-            this.spatialDockManager1.Size = new System.Drawing.Size(54, 14);
-            this.spatialDockManager1.SplitterDistance = 25;
-            this.spatialDockManager1.TabControl1 = null;
-            this.spatialDockManager1.TabControl2 = null;
-            this.spatialDockManager1.TabIndex = 2;
             // 
             // grpResults
             // 
@@ -238,22 +225,22 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpResults.Controls.Add(this.tbVolume);
-            this.grpResults.Location = new System.Drawing.Point(11, 163);
+            this.grpResults.Location = new System.Drawing.Point(12, 163);
             this.grpResults.Name = "grpResults";
-            this.grpResults.Size = new System.Drawing.Size(118, 95);
+            this.grpResults.Size = new System.Drawing.Size(136, 205);
             this.grpResults.TabIndex = 0;
             this.grpResults.TabStop = false;
-            this.grpResults.Text = "Snow Volume (m)";
+            this.grpResults.Text = "Results";
             // 
             // tbVolume
             // 
             this.tbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbVolume.Location = new System.Drawing.Point(11, 21);
+            this.tbVolume.Location = new System.Drawing.Point(0, 21);
             this.tbVolume.Multiline = true;
             this.tbVolume.Name = "tbVolume";
-            this.tbVolume.Size = new System.Drawing.Size(95, 63);
+            this.tbVolume.Size = new System.Drawing.Size(136, 178);
             this.tbVolume.TabIndex = 0;
             // 
             // spcMain
@@ -272,9 +259,20 @@
             // spcMain.Panel2
             // 
             this.spcMain.Panel2.Controls.Add(this.pnlLegendandResults);
-            this.spcMain.Size = new System.Drawing.Size(651, 281);
+            this.spcMain.Size = new System.Drawing.Size(651, 381);
             this.spcMain.SplitterDistance = 502;
             this.spcMain.TabIndex = 10;
+            // 
+            // lblDate
+            // 
+            this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDate.BackColor = System.Drawing.Color.White;
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Location = new System.Drawing.Point(297, 9);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(197, 19);
+            this.lblDate.TabIndex = 1;
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnZoomIn
             // 
@@ -319,7 +317,6 @@
             // appManager1
             // 
             this.appManager1.Directories = ((System.Collections.Generic.List<string>)(resources.GetObject("appManager1.Directories")));
-            this.appManager1.DockManager = this.spatialDockManager1;
             this.appManager1.HeaderControl = this.spatialHeaderControl1;
             this.appManager1.Legend = this.legend1;
             this.appManager1.Map = this.mapMain;
@@ -337,7 +334,7 @@
             this.spatialStatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1,
             this.toolStripStatusLabel1});
-            this.spatialStatusStrip1.Location = new System.Drawing.Point(0, 340);
+            this.spatialStatusStrip1.Location = new System.Drawing.Point(0, 440);
             this.spatialStatusStrip1.Name = "spatialStatusStrip1";
             this.spatialStatusStrip1.ProgressBar = this.toolStripProgressBar1;
             this.spatialStatusStrip1.ProgressLabel = this.toolStripStatusLabel1;
@@ -355,22 +352,11 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // lblDate
-            // 
-            this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDate.BackColor = System.Drawing.Color.White;
-            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(297, 9);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(197, 19);
-            this.lblDate.TabIndex = 1;
-            this.lblDate.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 362);
+            this.ClientSize = new System.Drawing.Size(684, 462);
             this.Controls.Add(this.spatialStatusStrip1);
             this.Controls.Add(this.btnPan);
             this.Controls.Add(this.btnZoomExtents);
@@ -391,8 +377,6 @@
             this.grpUnits.ResumeLayout(false);
             this.grpUnits.PerformLayout();
             this.pnlLegendandResults.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).EndInit();
-            this.spatialDockManager1.ResumeLayout(false);
             this.grpResults.ResumeLayout(false);
             this.grpResults.PerformLayout();
             this.spcMain.Panel1.ResumeLayout(false);
@@ -427,7 +411,6 @@
         private System.Windows.Forms.Button btnZoomOut;
         private System.Windows.Forms.Button btnZoomExtents;
         private System.Windows.Forms.Button btnPan;
-        private DotSpatial.Controls.SpatialDockManager spatialDockManager1;
         private DotSpatial.Controls.AppManager appManager1;
         private DotSpatial.Controls.SpatialHeaderControl spatialHeaderControl1;
         private DotSpatial.Controls.Legend legend1;

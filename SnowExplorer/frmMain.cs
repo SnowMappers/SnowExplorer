@@ -50,6 +50,9 @@ namespace SnowExplorer
         //variable for first time mouse click
         bool firstClick = false;
 
+        //the polygon layer
+        MapPolygonLayer polygonLayer = null;
+
         //************* End Polygon Variables ****************
 
         public frmMain()
@@ -99,7 +102,7 @@ namespace SnowExplorer
         private void frmMain_Load(object sender, EventArgs e)
         {
             //set superscript in grpVolume
-            grpResults.Text = "Snow Volume (m\xB3)";
+            grpResults.Text = "Results";
 
             string executablePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string dataFolder = Path.Combine(executablePath, "Snow_Data");
@@ -115,11 +118,41 @@ namespace SnowExplorer
                 statesLayer.Symbolizer.SetFillColor(Color.Transparent);
                 mapMain.Layers.Add(statesLayer);
             }
+
+            //get path of the shapefile in the Snow_Data subfolder
+            string lakesShapefile = Path.Combine(dataFolder, "us_lakes.shp");
+            if (File.Exists(lakesShapefile))
+            {
+                //set map symbol to blue color and blue outline
+                IFeatureSet lakesF = FeatureSet.Open(lakesShapefile);
+                MapPolygonLayer lakesLayer = new MapPolygonLayer(lakesF);
+                lakesLayer.Symbolizer.SetOutline(Color.Blue, 1.0);
+                lakesLayer.Symbolizer.SetFillColor(Color.LightBlue);
+                mapMain.Layers.Add(lakesLayer);
+            }
         }
 
         private void btnDrawPolygon_Click(object sender, EventArgs e)
         {
+            if (polygonLayer != null)
+            {
+                mapMain.Layers.Remove(polygonLayer);
+                polygonLayer = null;
 
+                //reset everything
+                polygonF = new FeatureSet(FeatureType.Polygon);
+                polygonFNew = new FeatureSet(FeatureType.Polygon);
+
+                //the id of the polygon
+                polygonID = 0;
+
+                //the x coordinates
+                xCoordinates = new List<double>();
+                //the y coordinates
+                yCoordinates = new List<double>();
+            }
+            
+            
             //change the mouse cursor
             mapMain.Cursor = Cursors.Cross;
 
@@ -144,7 +177,7 @@ namespace SnowExplorer
             }
 
             //add the polygon to the map layer
-            MapPolygonLayer polygonLayer = (MapPolygonLayer)mapMain.Layers.Add(polygonF);
+            polygonLayer = (MapPolygonLayer)mapMain.Layers.Add(polygonF);
 
             //polygon symbology
             PolygonSymbolizer symbol = new PolygonSymbolizer(Color.Peru);
@@ -303,10 +336,22 @@ namespace SnowExplorer
             //calculate the volume using function in our VolumeCalculator class
             VolumeCalculator volumeCalc = new VolumeCalculator();
             double volume_m3 = volumeCalc.CalculateVolume(cRaster);
+            List<double> areas_m2 = volumeCalc.CalculateAreaForLatLon(cRaster);
             
             //show the volume in the "results" textbox
             string volText = Convert.ToString(Math.Round(volume_m3, 0));
-            tbVolume.Text = volText;
+
+            string snowAreaText = Convert.ToString(Math.Round(areas_m2[0], 0));
+
+            string totalAreaText = Convert.ToString(Math.Round(areas_m2[1], 0));
+
+            double snowPercent = 100 * (areas_m2[0] / areas_m2[1]);
+            string snowPercentText = Convert.ToString(Math.Round(snowPercent , 1));
+
+            tbVolume.Text = "Volume: " + volText + "(m\xB3)" + "\n" +
+                "Snow-covered area: " + snowAreaText + "(m\xB2)" + "\n"; //+
+                //"Total area: " + totalAreaText + "\n" +
+                //"Percent snow-covered: " + snowPercentText + "\n";
         }
 
         private void cmbBackground_SelectedIndexChanged(object sender, EventArgs e)
